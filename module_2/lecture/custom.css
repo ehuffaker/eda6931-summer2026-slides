@@ -1,0 +1,2481 @@
+/* ============================================================
+   Saturday Session — palette
+   White backgrounds; GCS green for titles and identity; UF blue
+   and UF orange used sparingly as secondary accents.
+   ============================================================ */
+
+:root {
+  --bg:               #ffffff;
+  --bg-soft:          #fafafa;
+  --text:             #37474F;   /* dark grey */
+  --text-muted:       #90A4AE;   /* med grey */
+
+  --gcs-green:        #2E7D32;
+  --gcs-green-deep:   #1B5E20;
+  --gcs-green-bg:     #E8F5E9;
+
+  --uf-blue:          #0021A5;
+  --uf-blue-bg:       #E8EBF5;
+
+  --uf-orange:        #FA4616;
+  --uf-orange-bg:     #FDE8E2;
+
+  --grey-light:       #ECEFF1;
+}
+
+/* Reveal.js base overrides */
+.reveal {
+  font-family: 'Calibri', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  font-size: 28px;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  background: var(--bg);
+}
+
+/* Slide titles */
+.reveal h1, .reveal h2 {
+  color: var(--gcs-green-deep);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.reveal h2 {
+  font-size: 1.5em;
+  margin: 0 0 0.2em;
+}
+
+/* Thin accent line under slide titles */
+.title-rule {
+  width: 80px;
+  height: 4px;
+  background: var(--gcs-green);
+  border-radius: 2px;
+  margin: 0 0 1em 0;
+}
+
+.reveal p, .reveal li {
+  color: var(--text);
+}
+
+.reveal em, .reveal i {
+  color: var(--text);
+}
+
+.reveal strong {
+  font-weight: 700;
+}
+
+.reveal a {
+  color: var(--uf-blue);
+  text-decoration: none;
+}
+.reveal a:hover {
+  text-decoration: underline;
+}
+
+.reveal .slide-number {
+  color: var(--text-muted);
+  font-size: 0.5em;
+}
+
+/* ============================================================
+   Title slide
+   ============================================================ */
+.title-slide {
+  text-align: center !important;
+}
+.reveal .title-slide h1 {
+  font-size: 2em;
+  color: var(--gcs-green-deep);
+  margin-bottom: 0.2em;
+}
+.reveal .title-slide .accent {
+  width: 140px;
+  height: 4px;
+  background: var(--uf-orange);
+  margin: 24px auto;
+  border-radius: 2px;
+}
+.reveal .title-slide .subtitle {
+  font-size: 1em;
+  color: var(--text);
+  margin: 0.5em 0;
+}
+.reveal .title-slide .course-label {
+  font-size: 0.55em;
+  color: var(--text-muted);
+  margin-top: 2em;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   Reusable building blocks
+   ============================================================ */
+
+/* Grid of N boxes side-by-side */
+.box-grid {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0;
+}
+.box-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.box-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.box-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.box-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+/* A bordered tinted box */
+.box {
+  background: var(--gcs-green-bg);
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 10px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px rgba(27, 94, 32, 0.14);
+}
+.box.blue {
+  background: var(--uf-blue-bg);
+  border-color: var(--uf-blue);
+}
+.box.orange {
+  background: var(--uf-orange-bg);
+  border-color: var(--uf-orange);
+}
+.box.grey {
+  background: var(--grey-light);
+  border-color: var(--text-muted);
+}
+
+.box-title {
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.4em;
+}
+.box.blue .box-title { color: var(--uf-blue); }
+.box.orange .box-title { color: var(--uf-orange); }
+.box.grey .box-title { color: var(--text); }
+
+.box-body {
+  font-size: 0.7em;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.4;
+}
+.box-tag {
+  font-size: 0.65em;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.6em;
+  padding-top: 0.4em;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* A tier band on top of a box (slide 5: data tiers) */
+.tier-box {
+  background: var(--bg);
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px rgba(27, 94, 32, 0.14);
+}
+.tier-band {
+  background: var(--gcs-green);
+  color: white;
+  text-align: center;
+  padding: 6px 0;
+  font-weight: 700;
+  font-size: 0.7em;
+}
+.tier-name {
+  font-size: 0.95em;
+  font-weight: 700;
+  text-align: center;
+  padding: 14px 8px 6px;
+  color: var(--text);
+}
+.tier-body {
+  font-size: 0.65em;
+  padding: 6px 12px 14px;
+  text-align: center;
+  color: var(--text);
+}
+
+/* Callout box (slide 9 top) */
+.callout {
+  background: var(--gcs-green-bg);
+  border-left: 6px solid var(--gcs-green);
+  padding: 16px 22px;
+  border-radius: 4px;
+  margin: 14px 0 22px;
+}
+.callout-title {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.2em;
+}
+.callout-sub {
+  font-size: 0.7em;
+  color: var(--text);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Weight badges (slide 3 capstone) */
+.capstone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 14px 0 22px;
+}
+.capstone-card {
+  background: var(--bg);
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 10px;
+  padding: 18px 16px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(27, 94, 32, 0.14);
+}
+.capstone-card .card-title {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.5em;
+}
+.capstone-card .card-body {
+  font-size: 0.65em;
+  color: var(--text);
+  line-height: 1.4;
+}
+.capstone-card .weight {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background: var(--uf-orange);
+  color: white;
+  font-weight: 700;
+  font-size: 0.7em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Timeline row (slide 3 bottom) */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+.timeline-cell {
+  background: var(--grey-light);
+  border: 1px solid var(--text-muted);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.timeline-cell .tl-label {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+}
+.timeline-cell .tl-desc {
+  font-size: 0.6em;
+  color: var(--text);
+  margin: 4px 0;
+}
+.timeline-cell .tl-when {
+  font-size: 0.55em;
+  font-style: italic;
+  color: var(--uf-orange);
+}
+
+/* Combined open-questions + module-mapping rows */
+.q-roadmap {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+.q-rm-row {
+  display: grid;
+  grid-template-columns: 38px 1fr 260px;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--gcs-green-bg);
+  border-radius: 6px;
+}
+.q-rm-num {
+  background: var(--gcs-green);
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8em;
+}
+.q-rm-text {
+  font-size: 0.72em;
+  color: var(--text);
+  line-height: 1.35;
+}
+.q-rm-tag {
+  text-align: right;
+}
+.q-rm-modules {
+  font-size: 0.6em;
+  color: var(--gcs-green-deep);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.2;
+}
+.q-rm-tools {
+  font-size: 0.55em;
+  color: var(--text);
+  line-height: 1.3;
+  margin-top: 3px;
+}
+
+/* Numbered circle (slide 8 open questions) */
+.q-row {
+  display: flex;
+  align-items: center;
+  margin: 14px 0;
+  gap: 16px;
+}
+.q-num {
+  flex: 0 0 36px;
+  height: 36px;
+  background: var(--gcs-green);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8em;
+}
+.q-text {
+  font-size: 0.78em;
+  color: var(--text);
+  flex: 1;
+}
+
+/* GCS package items list (slide 7) */
+.pkg-item {
+  background: var(--gcs-green-bg);
+  border: 1px solid var(--gcs-green);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 6px 0;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+.pkg-name {
+  font-size: 0.72em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  font-family: 'Menlo', 'Consolas', monospace;
+  word-break: break-word;
+}
+.pkg-desc {
+  font-size: 0.62em;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* Two-column layouts (slide 4) */
+.split-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 14px 0;
+}
+.section-label {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 6px;
+}
+.tool-box {
+  background: var(--gcs-green-bg);
+  border: 2px solid var(--gcs-green);
+  border-radius: 10px;
+  padding: 18px 22px;
+}
+.tool-name {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.4em;
+}
+.tool-desc {
+  font-size: 0.65em;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.dataset-row {
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 4px 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  border: 1.5px solid;
+}
+.dataset-row.green {
+  background: var(--gcs-green-bg);
+  border-color: var(--gcs-green);
+}
+.dataset-row.blue {
+  background: var(--uf-blue-bg);
+  border-color: var(--uf-blue);
+}
+.dataset-row.grey {
+  background: var(--grey-light);
+  border-color: var(--text-muted);
+}
+.ds-label {
+  font-size: 0.85em;
+  font-weight: 700;
+}
+.dataset-row.green .ds-label { color: var(--gcs-green-deep); }
+.dataset-row.blue .ds-label { color: var(--uf-blue); }
+.dataset-row.grey .ds-label { color: var(--text); }
+.ds-desc {
+  font-size: 0.65em;
+  color: var(--text);
+}
+
+/* Generic emphasis text */
+.emphasis-orange {
+  color: var(--uf-orange);
+  font-weight: 700;
+}
+.muted-italic {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.7em;
+}
+.center {
+  text-align: center;
+}
+
+/* Slide footer or arc footer */
+.slide-footer {
+  margin-top: auto;
+  text-align: center;
+  font-style: italic;
+  color: var(--text);
+  font-size: 0.7em;
+  padding-top: 12px;
+}
+
+/* Warm-up slide: figure left (large), discussion prompt right (compact) */
+.warmup-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-top: 6px;
+}
+.warmup-figure img {
+  max-width: 100%;
+  max-height: 560px;
+  display: block;
+  margin: 0 auto;
+}
+.warmup-prompt {
+  background: var(--gcs-green-bg);
+  border-left: 5px solid var(--gcs-green);
+  padding: 18px 20px;
+  border-radius: 6px;
+  font-size: 0.88em;
+}
+.prompt-heading {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.6em;
+}
+
+/* GCS logo, top-right corner of slide */
+.gcs-logo-corner {
+  position: absolute;
+  top: 24px;
+  right: 36px;
+  width: 130px;
+  height: 130px;
+  z-index: 10;
+}
+.gcs-logo-corner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* "Why are we doing this?" callout for the Stata transition slide */
+.why-callout {
+  background: var(--gcs-green-bg);
+  border-left: 4px solid var(--gcs-green);
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin: 0 0 14px;
+}
+.why-heading {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.4em;
+}
+.why-text {
+  font-size: 0.7em;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.45;
+}
+.why-text strong {
+  color: var(--gcs-green-deep);
+}
+
+/* Checkbox-style to-do list (Stata transition slide) */
+.todo-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.7em;
+  line-height: 1.6;
+  margin: 0;
+}
+.todo-list li {
+  padding: 4px 0 4px 30px;
+  position: relative;
+}
+.todo-list li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 7px;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 3px;
+  background: white;
+}
+.todo-list code {
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 0.9em;
+  color: var(--gcs-green-deep);
+}
+
+/* Looking-ahead horizontal callout (used on the data access procedures slide) */
+.dissertation-callout {
+  background: white;
+  border: 2px solid var(--uf-orange);
+  padding: 14px 22px;
+  margin-top: 16px;
+  border-radius: 6px;
+}
+.reveal .dissertation-callout .callout-label {
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--uf-orange) !important;
+  margin: 0 0 0.5em;
+}
+.callout-text {
+  font-size: 0.75em;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Question-to-module roadmap layout */
+.roadmap-grid {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+}
+.roadmap-row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: var(--gcs-green-bg);
+  align-items: center;
+}
+.roadmap-module {
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  font-size: 0.78em;
+}
+.roadmap-content {
+  font-size: 0.75em;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* GCS intro slide: logo left, framing right */
+.gcs-intro-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 14px;
+}
+.gcs-intro-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.gcs-intro-text {
+  font-size: 1em;
+}
+
+/* Public / Private data sources two-column */
+.ds-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 12px 0 8px;
+}
+.ds-col {
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 1.5px solid;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+.ds-col.public {
+  background: var(--gcs-green-bg);
+  border-color: var(--gcs-green);
+}
+.ds-col.private {
+  background: var(--uf-blue-bg);
+  border-color: var(--uf-blue);
+}
+.ds-header {
+  font-size: 0.95em;
+  font-weight: 700;
+  margin: 0 0 0.4em;
+}
+.ds-col.public .ds-header { color: var(--gcs-green-deep); }
+.ds-col.private .ds-header { color: var(--uf-blue); }
+.reveal .ds-col.private ul.bullet-list li::before {
+  background: var(--uf-blue);
+}
+
+/* Can / Cannot two-column framing */
+.can-cannot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 14px 0 8px;
+}
+.cc-col {
+  padding: 18px 22px;
+  border-radius: 10px;
+  border: 1.5px solid;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+.cc-col.can {
+  background: var(--gcs-green-bg);
+  border-color: var(--gcs-green);
+}
+.cc-col.cannot {
+  background: var(--uf-orange-bg);
+  border-color: var(--uf-orange);
+}
+.cc-header {
+  font-size: 0.95em;
+  font-weight: 700;
+  margin: 0 0 0.5em;
+}
+.cc-col.can .cc-header {
+  color: var(--gcs-green-deep);
+}
+.cc-col.cannot .cc-header {
+  color: var(--uf-orange);
+}
+
+/* Welcome slide grid: text left, casual collage right */
+.welcome-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 24px;
+  align-items: center;
+  margin-top: 6px;
+}
+.welcome-name {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 0 0 0.2em;
+}
+.welcome-role {
+  font-size: 0.78em;
+  color: var(--text);
+  margin: 0 0 1em;
+}
+
+/* Casual scrapbook-style collage. Each image is absolutely placed,
+   with a slight rotation, white border, and drop shadow. */
+.welcome-montage {
+  position: relative;
+  width: 100%;
+  height: 340px;
+}
+.reveal .welcome-montage img {
+  position: absolute !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  border: 4px solid white;
+  background: white;
+  box-sizing: border-box;
+}
+.welcome-montage img:nth-child(1) { top: 8%;   left: 2%;   width: 50%; transform: rotate(-3deg); z-index: 1; }
+.welcome-montage img:nth-child(2) { top: 42%;  left: 28%;  width: 38%; transform: rotate(2deg);  z-index: 3; }
+.welcome-montage img:nth-child(3) { top: 14%;  right: 0%;  width: 36%; transform: rotate(-2deg); z-index: 2; }
+
+/* Slide runner: minimalist progress indicator anchored INSIDE each slide.
+   Reveal.js sections are already position-absolute, so they act as the
+   containing block for our absolute-positioned runner.
+   Title slide and divider slide simply omit the .slide-runner div. */
+.reveal .slide-runner {
+  position: absolute;
+  bottom: 12px;
+  left: 24px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+  z-index: 1;
+}
+
+/* Section divider slide */
+.reveal section.divider {
+  background: var(--gcs-green-bg);
+}
+.reveal section.divider .divider-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 86%;
+  text-align: center;
+}
+.reveal section.divider .section-eyebrow {
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gcs-green);
+  margin: 0 0 1.4em;
+}
+.reveal section.divider h2 {
+  font-size: 1.8em;
+  color: var(--gcs-green-deep);
+  margin: 0;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  border-bottom: none;
+}
+.reveal section.divider .divider-rule {
+  width: 96px;
+  height: 4px;
+  background: var(--uf-orange);
+  margin: 0.85em auto 0.75em;
+  border-radius: 2px;
+}
+.divider-sub {
+  font-size: 0.95em;
+  color: var(--text);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Course roadmap: goals block above the 5-stage grid */
+.goals-block {
+  margin: 6px 0 14px;
+}
+.goals-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 6px;
+}
+.goal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--gcs-green-bg);
+  border-left: 4px solid var(--gcs-green);
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-size: 0.72em;
+  color: var(--text);
+  line-height: 1.4;
+}
+.goal-num {
+  background: var(--gcs-green);
+  color: white;
+  font-weight: 700;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+/* Standardized lead-in paragraph appearing between title-rule and main content */
+.reveal .slide-lead {
+  font-size: 0.85em;
+  color: var(--text);
+  margin: 4px 0 14px;
+  line-height: 1.45;
+}
+
+/* Spacious bullet layout for list-heavy slides like Introductions */
+.reveal #introductions p {
+  font-size: 1.15em;
+  margin: 0 0 1.4em;
+}
+.reveal #introductions ul.bullet-list {
+  font-size: 1em;
+  line-height: 1.8;
+}
+.reveal #introductions ul.bullet-list li {
+  padding: 14px 0 14px 30px;
+}
+.reveal #introductions ul.bullet-list li::before {
+  width: 10px;
+  height: 10px;
+  top: 24px;
+  left: 6px;
+}
+
+/* Agenda slide */
+.agenda-grid {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+.agenda-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--gcs-green-bg);
+  border-left: 4px solid var(--gcs-green);
+  align-items: center;
+}
+.agenda-row.break {
+  background: var(--grey-light);
+  border-left-color: var(--text-muted);
+}
+.agenda-time {
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  font-size: 0.78em;
+}
+.agenda-row.break .agenda-time {
+  color: var(--text-muted);
+}
+.agenda-seg {
+  font-size: 0.78em;
+  color: var(--text);
+}
+.agenda-row.break .agenda-seg {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.reveal ul.bullet-list,
+.reveal ol.bullet-list {
+  font-size: 0.75em;
+  line-height: 1.6;
+  list-style: none !important;
+  padding-left: 0;
+  margin-left: 0;
+}
+.reveal ul.bullet-list li,
+.reveal ol.bullet-list li {
+  padding: 4px 0 4px 24px;
+  position: relative;
+  list-style: none !important;
+  list-style-type: none !important;
+}
+.reveal ul.bullet-list li::marker,
+.reveal ol.bullet-list li::marker {
+  content: '';
+  display: none;
+}
+.reveal ul.bullet-list li::before,
+.reveal ol.bullet-list li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--gcs-green);
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  top: 14px;
+}
+
+/* Bullet color matches the box theme it lives in */
+.reveal .cc-col.cannot ul.bullet-list li::before,
+.reveal .cc-col.cannot ol.bullet-list li::before {
+  background: var(--uf-orange);
+}
+
+
+/* =============================================================================
+   M2 ADDITIONS — CFU (PlayPosit) slides + title-slide download link
+   ============================================================================= */
+
+/* CFU slides — orange accent bar on top, centered prompt, lettered options */
+.reveal section.cfu {
+  background: linear-gradient(to bottom, #FA4616 0, #FA4616 6px, #fff 6px);
+}
+
+.reveal .cfu-frame {
+  padding: 14px 8px 0;
+}
+
+.reveal .cfu-eyebrow {
+  color: var(--uf-orange);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.reveal .cfu-prompt {
+  color: var(--text);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0 0 32px;
+  text-align: left;
+  border-bottom: none;
+}
+
+.reveal .cfu-prompt code {
+  background: #f4f4f4;
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  font-size: 0.92em;
+  color: var(--gcs-green-deep);
+}
+
+.reveal ol.cfu-options {
+  list-style-type: upper-alpha;
+  padding-left: 1.5em;
+  font-size: 22px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.reveal ol.cfu-options li {
+  padding: 4px 0;
+  margin-bottom: 6px;
+}
+
+.reveal ol.cfu-options li::marker {
+  font-weight: 700;
+  color: var(--uf-orange);
+}
+
+.reveal ul.cfu-reflect {
+  list-style: none;
+  padding-left: 0;
+  font-size: 22px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.reveal ul.cfu-reflect li {
+  padding: 6px 0 6px 28px;
+  position: relative;
+}
+
+.reveal ul.cfu-reflect li::before {
+  content: '▸';
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  color: var(--uf-orange);
+  font-size: 18px;
+}
+
+.reveal .cfu-foot {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin-top: 32px;
+  font-style: italic;
+}
+
+.reveal pre.cfu-code {
+  background: #f7f7f5;
+  border: 1px solid #d4d4cf;
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 18px 0 24px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Title-slide download link */
+.reveal .title-slide .notes-link {
+  margin-top: 36px;
+  font-size: 17px;
+}
+
+.reveal .title-slide .notes-link a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: rgba(46, 125, 50, 0.10);
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 6px;
+  color: var(--gcs-green-deep);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.15s ease;
+}
+
+.reveal .title-slide .notes-link a:hover {
+  background: rgba(46, 125, 50, 0.18);
+}
+
+
+/* =============================================================================
+   M2 ADDITIONS — Spring screenshots: layout for figure + side panel
+   ============================================================================= */
+
+/* Title slide: UF tower as soft background-corner image */
+.reveal .title-slide .title-tower {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 38%;
+  overflow: hidden;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+.reveal .title-slide .title-tower img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.reveal .title-slide .center {
+  position: relative;
+  z-index: 1;
+}
+
+/* Screenshot row: image on left, info panel on right */
+.reveal .screenshot-row {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+.reveal .screenshot-figure {
+  background: #fff;
+  border: 1.5px solid #d4d4cf;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+.reveal .screenshot-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  display: block;
+  border-radius: 3px;
+}
+
+.reveal .screenshot-caption {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.reveal .screenshot-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.reveal .mini-box {
+  background: #fff;
+  border-left: 4px solid var(--gcs-green);
+  border-radius: 4px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.reveal .mini-box.blue { border-left-color: var(--uf-blue); }
+.reveal .mini-box.orange { border-left-color: var(--uf-orange); }
+
+.reveal .mini-box-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  color: var(--gcs-green-deep);
+}
+.reveal .mini-box.blue .mini-box-title { color: var(--uf-blue); }
+.reveal .mini-box.orange .mini-box-title { color: var(--uf-orange); }
+
+.reveal .mini-box-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+/* Sources slide: list on left, screenshot on right */
+.reveal .sources-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.reveal .sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reveal .sources-figure {
+  background: #fff;
+  border: 1.5px solid #d4d4cf;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  align-self: center;
+}
+
+.reveal .sources-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* Slide-key: substantive teaching point at bottom of slide, not a tagline */
+.reveal .slide-key {
+  font-size: 0.78em;
+  color: var(--text);
+  margin: 16px 0 0;
+  line-height: 1.45;
+  padding: 10px 14px;
+  background: rgba(46, 125, 50, 0.06);
+  border-left: 3px solid var(--gcs-green);
+  border-radius: 0 4px 4px 0;
+}
+
+
+/* =============================================================================
+   M2 MAJOR REVISION — Spring M1+M2 faithful structure
+   ============================================================================= */
+
+/* ---------- 3-row data-types stack (Spring M1 #21) ---------- */
+.reveal .types-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 6px;
+}
+.reveal .type-row {
+  border: 1.5px solid #2b3a55;
+  border-radius: 6px;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+}
+.reveal .type-band {
+  background: #2b3a55;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 8px 16px;
+}
+.reveal .type-row.survey .type-band { background: #46598a; }
+.reveal .type-row.experimental .type-band { background: #6f7d9c; }
+.reveal .type-bullets {
+  list-style: disc;
+  margin: 8px 0 8px 36px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.reveal .type-bullets li { padding: 1px 0; }
+
+/* ---------- Pyramid (Spring M1 #22) ---------- */
+.reveal .pyramid-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+  padding: 10px 30px 0;
+}
+.reveal .pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: 560px;
+  justify-self: end;
+}
+.reveal .pyramid-row {
+  color: #000;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 0;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(var(--inset, 50%) 0, calc(100% - var(--inset, 50%)) 0, 100% 100%, 0 100%);
+}
+.reveal .pyramid-row.r1 {
+  background: #d6dde9; width: 22%; padding-top: 6px;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+}
+.reveal .pyramid-row.r2 { background: #aab6cf; width: 36%; clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); }
+.reveal .pyramid-row.r3 { background: #8190b3; width: 50%; color: #fff; clip-path: polygon(0 0, 100% 0, 93% 100%, 7% 100%); }
+.reveal .pyramid-row.r4 { background: #66759c; width: 64%; color: #fff; clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); }
+.reveal .pyramid-row.r5 { background: #4b5b85; width: 80%; color: #fff; clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%); }
+.reveal .pyramid-row.r6 { background: #324270; width: 96%; color: #fff; clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%); }
+.reveal .pyramid-aside {
+  border: 1.5px solid #2b3a55;
+  background: #fff;
+  border-radius: 4px;
+  padding: 14px 18px;
+  font-size: 17px;
+  color: var(--text);
+  text-align: center;
+  max-width: 280px;
+}
+
+/* ---------- Full-bleed screenshot ---------- */
+.reveal .screenshot-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+.reveal .screenshot-full img {
+  max-width: 96%;
+  max-height: 540px;
+  border: 1.5px solid #d4d4cf;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  background: #fff;
+}
+
+/* ---------- 3-card data structures (Spring M1 #24) ---------- */
+.reveal .structures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 10px;
+}
+.reveal .structure-card {
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 6px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.reveal .structure-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.reveal .structure-desc {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.reveal .structure-ex {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  border-top: 1px solid #e0e0d8;
+  padding-top: 6px;
+}
+
+/* ---------- Example-block (NAEP STQ/LTT) ---------- */
+.reveal .example-block {
+  border: 1.5px solid var(--gcs-green);
+  border-radius: 4px;
+  padding: 10px 14px;
+  background: #fff;
+  margin-bottom: 12px;
+}
+.reveal .example-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin-bottom: 4px;
+}
+.reveal .example-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ---------- Engaging with data (3-tier, Spring M1 #26) ---------- */
+.reveal .engaging-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0;
+}
+.reveal .engaging-row {
+  border: 1.5px solid #2b3a55;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+.reveal .engaging-band {
+  background: #2b3a55;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 7px 14px;
+}
+.reveal .engaging-row:nth-child(2) .engaging-band { background: #46598a; }
+.reveal .engaging-row:nth-child(3) .engaging-band { background: #6f7d9c; }
+.reveal .engaging-text {
+  padding: 8px 14px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.reveal .engaging-aside {
+  margin-top: 12px;
+  border: 1.5px solid var(--uf-orange);
+  border-radius: 4px;
+  background: rgba(250, 70, 22, 0.04);
+  padding: 10px 14px;
+}
+.reveal .aside-line {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.4;
+  padding: 3px 0;
+}
+.reveal .aside-arrow {
+  color: var(--uf-orange);
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ---------- Sources (Public/Private) ---------- */
+.reveal .slide-lead-large {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin: 6px 0 14px;
+  line-height: 1.4;
+}
+.reveal ul.sources-bullets {
+  list-style: disc;
+  padding-left: 28px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.reveal ul.sources-bullets li {
+  padding: 6px 0;
+}
+
+/* ---------- Bullet-list size variants ---------- */
+.reveal ul.bullet-list.large li,
+.reveal ol.bullet-list.large li {
+  font-size: 19px;
+  line-height: 1.55;
+  padding: 6px 0 6px 24px;
+}
+.reveal ul.bullet-list.small li,
+.reveal ol.bullet-list.small li {
+  font-size: 14px;
+  line-height: 1.45;
+  padding: 3px 0 3px 24px;
+}
+.reveal ul.bullet-sub {
+  list-style: circle;
+  margin-left: 28px;
+  margin-top: 4px;
+  font-size: 0.92em;
+  color: var(--text-muted);
+}
+.reveal ul.bullet-sub li { padding: 2px 0; }
+
+/* ---------- Variable types table (Spring M2 #15) ---------- */
+.reveal table.vartypes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 14px;
+}
+.reveal table.vartypes-table th {
+  background: #2b3a55;
+  color: #fff;
+  text-align: left;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.reveal table.vartypes-table td {
+  border: 1px solid #c5c8cf;
+  padding: 8px 12px;
+  vertical-align: top;
+  color: var(--text);
+}
+.reveal table.vartypes-table td:first-child {
+  font-weight: 700;
+  width: 18%;
+  background: #ecedf1;
+}
+.reveal .vartypes-block { margin: 4px 0 6px; }
+.reveal ul.vartypes-sub {
+  list-style: disc;
+  margin: 4px 0 8px 22px;
+  padding: 0;
+}
+.reveal ul.vartypes-sub li { padding: 1px 0; }
+
+/* ---------- Key terms strip ---------- */
+.reveal .key-terms {
+  margin-top: 18px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+/* ---------- Reducing-information stack ---------- */
+.reveal .reducing-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+}
+.reveal .reducing-row {
+  background: #fff;
+  border-left: 4px solid var(--gcs-green);
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.reveal .reducing-row p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ---------- Central tendency example callout ---------- */
+.reveal .example-callout {
+  background: #f7f7f1;
+  border: 1.5px solid #d4d4cf;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-size: 15px;
+}
+.reveal .example-label {
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin-bottom: 6px;
+}
+.reveal ul.example-bullets {
+  list-style: disc;
+  margin: 0 0 0 24px;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  color: var(--text);
+}
+.reveal ul.example-bullets li { padding: 2px 0; }
+
+/* ---------- Mean vs median (twitter + cartoon) ---------- */
+.reveal .meanmedian-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 4px;
+}
+.reveal .meanmedian-text { padding-top: 4px; }
+.reveal .bold-heading {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.reveal img.inline-fig {
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+.reveal .meanmedian-cartoon img {
+  max-width: 100%;
+  max-height: 440px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* ---------- Variability layout ---------- */
+.reveal .variability-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 24px;
+  align-items: center;
+}
+.reveal .variability-figure img {
+  max-width: 100%;
+  max-height: 460px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.reveal .variability-text { padding: 0 6px; }
+.reveal .small-text {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+/* ---------- Outliers + skew grid ---------- */
+.reveal .outliers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 4px;
+}
+.reveal .outliers-figure img,
+.reveal .skew-figure img {
+  max-width: 100%;
+  max-height: 360px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.reveal .skew-labels {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* ---------- Construct/measure side-by-side ---------- */
+.reveal .construct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 70px;
+}
+.reveal .construct-side {
+  background: #fff;
+  border: 1.5px solid var(--uf-blue);
+  border-radius: 6px;
+  padding: 36px 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 220px;
+}
+.reveal .construct-side.measure { border-color: var(--uf-orange); }
+.reveal .construct-label {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--uf-blue);
+  margin-bottom: 8px;
+}
+.reveal .construct-side.measure .construct-label { color: var(--uf-orange); }
+.reveal .construct-text {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.reveal .construct-ex {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ---------- "This week" callout ---------- */
+.reveal .this-week-callout {
+  margin-top: 22px;
+  border: 1.5px solid var(--gcs-green);
+  background: rgba(46, 125, 50, 0.05);
+  border-radius: 6px;
+  padding: 12px 18px;
+}
+.reveal .this-week-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gcs-green-deep);
+  margin-bottom: 8px;
+}
+
+
+/* Objectives lead — heads-up framing */
+.reveal .objectives-lead {
+  background: rgba(46, 125, 50, 0.08);
+  border-left: 4px solid var(--gcs-green);
+  padding: 10px 14px;
+  margin: 4px 0 14px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gcs-green-deep);
+  border-radius: 0 4px 4px 0;
+}
+
+
+/* Safe zone for slide-runner so it never overlaps content */
+.reveal .slides > section { padding-bottom: 56px; }
+
+
+/* Questions list with blanks and answer-key version */
+.reveal ul.qlist {
+  list-style: disc;
+  margin: 8px 0 8px 28px;
+  padding: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.reveal ul.qlist > li { padding: 4px 0; }
+.reveal ul.qsublist {
+  list-style: circle;
+  margin: 4px 0 4px 24px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+.reveal ul.qsublist > li { padding: 2px 0; }
+.reveal .blank {
+  display: inline-block;
+  width: 130px;
+  border-bottom: 1.5px solid #888;
+  margin-left: 6px;
+  vertical-align: -2px;
+}
+.reveal .answer {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 10px;
+  background: rgba(46, 125, 50, 0.10);
+  color: var(--gcs-green-deep);
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 0.96em;
+}
+
+
+/* =============================================================================
+   M2 FINAL REVISION — palette consistency, font hierarchy, answer slides
+   ============================================================================= */
+
+/* --- TYPES STACK: brand palette (green / UF blue / UF orange) --- */
+.reveal .type-row.admin        { border: 1.5px solid var(--gcs-green) !important; }
+.reveal .type-row.survey       { border: 1.5px solid var(--uf-blue)  !important; }
+.reveal .type-row.experimental { border: 1.5px solid var(--uf-orange) !important; }
+.reveal .type-row.admin .type-band        { background: var(--gcs-green) !important; }
+.reveal .type-row.survey .type-band       { background: var(--uf-blue)  !important; }
+.reveal .type-row.experimental .type-band { background: var(--uf-orange) !important; }
+.reveal .types-stack { gap: 10px !important; }
+.reveal .type-band { font-size: 17px !important; padding: 6px 14px !important; }
+.reveal .type-bullets { font-size: 15px !important; line-height: 1.45 !important; margin: 6px 0 6px 30px !important; }
+.reveal .type-bullets li { padding: 1px 0 !important; }
+
+/* --- PYRAMID: green palette, larger --- */
+.reveal .pyramid { max-width: 720px !important; }
+.reveal .pyramid-row {
+  font-size: 26px !important;
+  padding: 12px 0 !important;
+  font-weight: 700 !important;
+}
+.reveal .pyramid-row.r1 { background: #DCEBDB !important; color: #1B5E20 !important; width: 24% !important; }
+.reveal .pyramid-row.r2 { background: #A6CFA8 !important; color: #1B5E20 !important; width: 38% !important; }
+.reveal .pyramid-row.r3 { background: #6FB374 !important; color: #fff !important;    width: 52% !important; }
+.reveal .pyramid-row.r4 { background: #4A9550 !important; color: #fff !important;    width: 66% !important; }
+.reveal .pyramid-row.r5 { background: #2E7D32 !important; color: #fff !important;    width: 82% !important; }
+.reveal .pyramid-row.r6 { background: #1B5E20 !important; color: #fff !important;    width: 98% !important; }
+.reveal .pyramid-aside {
+  border: 1.5px solid var(--gcs-green) !important;
+  background: rgba(46, 125, 50, 0.06) !important;
+  color: var(--gcs-green-deep) !important;
+  font-size: 18px !important;
+}
+
+/* --- STRUCTURES GRID: fill the slide better, taller cards --- */
+.reveal .structures-grid { gap: 22px !important; margin-top: 24px !important; }
+.reveal .structure-card {
+  padding: 24px 22px !important;
+  min-height: 260px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+.reveal .structure-name { font-size: 22px !important; margin-bottom: 14px !important; }
+.reveal .structure-desc { font-size: 18px !important; margin-bottom: 22px !important; }
+.reveal .structure-ex { font-size: 14px !important; padding-top: 10px !important; }
+
+/* --- ANSWER SLIDES (after each CFU) --- */
+.reveal section h2:first-of-type {
+  /* default; already left-aligned via earlier rule */
+}
+.reveal .answer-block {
+  background: rgba(46, 125, 50, 0.06);
+  border-left: 5px solid var(--gcs-green);
+  border-radius: 0 6px 6px 0;
+  padding: 18px 24px;
+  margin-top: 14px;
+}
+.reveal .answer-block p {
+  font-size: 18px;
+  line-height: 1.55;
+  margin: 0 0 12px;
+  color: var(--text);
+}
+.reveal .answer-block p:last-child { margin-bottom: 0; }
+.reveal .answer-block ul {
+  margin: 8px 0 8px 24px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.reveal .answer-block ul li { padding: 3px 0; }
+.reveal .answer-block strong { color: var(--gcs-green-deep); }
+
+/* Title style for answer slides — pick up GCS green like other content slides */
+.reveal h2 {
+  text-align: left !important;
+}
+
+/* --- FONT HIERARCHY: normalize across slides --- */
+.reveal .slide-lead-large { font-size: 18px !important; }
+.reveal ul.bullet-list.large li,
+.reveal ol.bullet-list.large li { font-size: 18px !important; line-height: 1.55 !important; }
+.reveal ul.bullet-list.small li,
+.reveal ol.bullet-list.small li { font-size: 14px !important; line-height: 1.5 !important; }
+.reveal ul.sources-bullets { font-size: 15px !important; }
+.reveal ul.sources-bullets li { padding: 5px 0 !important; }
+
+/* Variability + outliers later-slide readability fixes */
+.reveal .variability-text { font-size: 15px !important; }
+.reveal .variability-text p.bold-heading { font-size: 16px !important; margin-bottom: 8px !important; }
+.reveal .variability-text .small-text { font-size: 13px !important; }
+.reveal .small-text { font-size: 13px !important; }
+.reveal .skew-labels { font-size: 14px !important; }
+
+/* Construct vs measure */
+.reveal .construct-text { font-size: 17px !important; }
+.reveal .construct-ex { font-size: 14px !important; }
+.reveal .construct-label { font-size: 14px !important; }
+
+/* Tightening on engaging-with-data slide */
+.reveal .engaging-band { font-size: 16px !important; padding: 6px 14px !important; }
+.reveal .engaging-text { font-size: 14px !important; line-height: 1.45 !important; padding: 6px 14px !important; }
+
+/* example-callout text scale */
+.reveal .example-callout { font-size: 15px !important; }
+.reveal .example-label { font-size: 15px !important; }
+.reveal ul.example-bullets li { font-size: 15px !important; }
+
+/* CFU options */
+.reveal ol.cfu-options { font-size: 21px !important; line-height: 1.6 !important; }
+.reveal .cfu-prompt { font-size: 24px !important; line-height: 1.45 !important; }
+
+/* Ensure body bullets don't get too big */
+.reveal ul.bullet-list li,
+.reveal ol.bullet-list li { font-size: 17px; line-height: 1.55; }
+
+
+/* =============================================================================
+   M2 TYPE-SCALE PASS — final consolidation
+   Single source of truth for font sizes. Six tiers, applied consistently.
+   ============================================================================= */
+
+/* Tier 1: Slide title */
+.reveal h2 { font-size: 32px !important; line-height: 1.25 !important; }
+
+/* Tier 2: Slide lead / objective intros — 20px */
+.reveal .objectives-lead,
+.reveal .slide-lead,
+.reveal .slide-lead-large,
+.reveal .slide-key { font-size: 18px !important; line-height: 1.5 !important; }
+
+/* Tier 3: Default bullet text — 19px */
+.reveal ul.bullet-list li,
+.reveal ol.bullet-list li,
+.reveal section > ul > li,
+.reveal section > ol > li { font-size: 19px !important; line-height: 1.55 !important; }
+.reveal ul.bullet-list.large li,
+.reveal ol.bullet-list.large li { font-size: 19px !important; line-height: 1.6 !important; }
+
+/* Tier 4: Sub-bullets / supporting text — 16px */
+.reveal ul.bullet-list.small li,
+.reveal ol.bullet-list.small li,
+.reveal ul.bullet-sub li,
+.reveal ul.qsublist li { font-size: 15px !important; line-height: 1.5 !important; }
+
+/* Tier 5: Captions / examples / fine print — 14px */
+.reveal .small-text,
+.reveal .skew-labels,
+.reveal .screenshot-caption { font-size: 14px !important; line-height: 1.45 !important; }
+
+/* Tier 6: Eyebrows / labels — 13px uppercase */
+.reveal .construct-label,
+.reveal .cfu-eyebrow { font-size: 13px !important; letter-spacing: 0.15em !important; }
+
+/* --- TYPES STACK --- */
+.reveal .type-band     { font-size: 18px !important; padding: 7px 16px !important; }
+.reveal .type-bullets li { font-size: 17px !important; line-height: 1.5 !important; padding: 2px 0 !important; }
+
+/* --- PYRAMID --- */
+.reveal .pyramid-row    { font-size: 24px !important; padding: 11px 0 !important; }
+.reveal .pyramid-aside  { font-size: 17px !important; line-height: 1.45 !important; }
+
+/* --- STRUCTURE CARDS --- */
+.reveal .structure-name { font-size: 21px !important; margin-bottom: 12px !important; }
+.reveal .structure-desc { font-size: 18px !important; margin-bottom: 18px !important; }
+.reveal .structure-ex   { font-size: 14px !important; padding-top: 8px !important; }
+
+/* --- NAEP example blocks --- */
+.reveal .example-name { font-size: 17px !important; margin-bottom: 4px !important; }
+.reveal .example-text { font-size: 15px !important; line-height: 1.5 !important; }
+
+/* --- ENGAGING WITH DATA (3-tier) --- */
+.reveal .engaging-band { font-size: 18px !important; padding: 7px 16px !important; }
+.reveal .engaging-text { font-size: 16px !important; line-height: 1.5 !important; padding: 8px 16px !important; }
+.reveal .aside-line    { font-size: 14px !important; line-height: 1.45 !important; padding: 4px 0 !important; }
+
+/* --- SOURCES (Public/Private) --- */
+.reveal ul.sources-bullets li { font-size: 17px !important; line-height: 1.55 !important; padding: 6px 0 !important; }
+
+/* --- VARIABLES TABLE --- */
+.reveal table.vartypes-table th { font-size: 16px !important; padding: 9px 14px !important; }
+.reveal table.vartypes-table td { font-size: 15px !important; padding: 10px 14px !important; line-height: 1.5 !important; }
+.reveal .vartypes-block { font-size: 15px !important; }
+.reveal ul.vartypes-sub li { font-size: 15px !important; line-height: 1.5 !important; padding: 2px 0 !important; }
+
+/* --- BOXES (3-card grid) --- */
+.reveal .box-title { font-size: 18px !important; }
+.reveal .box-body  { font-size: 15px !important; line-height: 1.5 !important; }
+.reveal .box-tag   { font-size: 13px !important; line-height: 1.45 !important; }
+
+/* --- CENTRAL TENDENCY EXAMPLE CALLOUT --- */
+.reveal .example-callout { font-size: 16px !important; }
+.reveal .example-label   { font-size: 16px !important; }
+.reveal ul.example-bullets li { font-size: 16px !important; line-height: 1.55 !important; padding: 3px 0 !important; }
+
+/* --- VARIABILITY --- */
+.reveal .variability-text { font-size: 16px !important; }
+.reveal .variability-text .bold-heading { font-size: 17px !important; margin-bottom: 8px !important; }
+.reveal .variability-text .small-text   { font-size: 14px !important; }
+.reveal .variability-text .bullet-list.small li { font-size: 15px !important; }
+
+/* --- CONSTRUCT VS MEASURE --- */
+.reveal .construct-text { font-size: 18px !important; }
+.reveal .construct-ex   { font-size: 14px !important; line-height: 1.45 !important; }
+
+/* --- CFU SLIDES --- */
+.reveal .cfu-prompt   { font-size: 24px !important; line-height: 1.5 !important; }
+.reveal ol.cfu-options li { font-size: 21px !important; line-height: 1.6 !important; }
+.reveal ul.cfu-reflect li { font-size: 21px !important; line-height: 1.6 !important; }
+.reveal pre.cfu-code  { font-size: 15px !important; line-height: 1.55 !important; padding: 14px 18px !important; }
+.reveal .cfu-foot     { font-size: 16px !important; }
+
+/* --- ANSWER BLOCKS --- */
+.reveal .answer-block p  { font-size: 18px !important; line-height: 1.55 !important; }
+.reveal .answer-block ul { font-size: 17px !important; line-height: 1.55 !important; }
+.reveal .answer-block ul li { font-size: 17px !important; padding: 4px 0 !important; }
+
+/* --- KEY TERMS STRIP & QLIST ANSWER KEY --- */
+.reveal .key-terms { font-size: 17px !important; line-height: 1.65 !important; }
+.reveal ul.qlist li { font-size: 17px !important; line-height: 1.65 !important; }
+.reveal ul.qlist > li { padding: 5px 0 !important; }
+.reveal .answer { font-size: 0.92em !important; }
+
+/* --- THIS WEEK CALLOUT --- */
+.reveal .this-week-title { font-size: 17px !important; }
+.reveal .this-week-callout .bullet-list.small li { font-size: 15px !important; }
+
+/* --- SLIDE RUNNER (footer) --- */
+.reveal .slide-runner { font-size: 11px !important; }
+
+
+/* =============================================================================
+   ENGAGING WITH DATA — recolor to brand palette
+   ============================================================================= */
+.reveal .engaging-row { border: 1.5px solid var(--gcs-green) !important; }
+.reveal .engaging-row:nth-child(2) { border-color: var(--uf-blue) !important; }
+.reveal .engaging-row:nth-child(3) { border-color: var(--uf-orange) !important; }
+
+.reveal .engaging-band { background: var(--gcs-green) !important; }
+.reveal .engaging-row:nth-child(2) .engaging-band { background: var(--uf-blue) !important; }
+.reveal .engaging-row:nth-child(3) .engaging-band { background: var(--uf-orange) !important; }
+
+
+/* =============================================================================
+   BREATHING ROOM — line-height + padding everywhere
+   ============================================================================= */
+
+.reveal ul, .reveal ol { margin-bottom: 0.6em !important; }
+.reveal ul.bullet-list li,
+.reveal ol.bullet-list li,
+.reveal section > ul > li,
+.reveal section > ol > li {
+  line-height: 1.7 !important;
+  padding: 6px 0 6px 28px !important;
+}
+.reveal ul.bullet-list.large li,
+.reveal ol.bullet-list.large li {
+  line-height: 1.75 !important;
+  padding: 8px 0 8px 28px !important;
+}
+.reveal ul.bullet-list.small li,
+.reveal ol.bullet-list.small li {
+  line-height: 1.6 !important;
+  padding: 5px 0 5px 28px !important;
+}
+
+/* Type-stack: more breathing in bullets */
+.reveal .type-bullets li { line-height: 1.6 !important; padding: 4px 0 !important; }
+.reveal .type-bullets { margin: 10px 0 12px 32px !important; }
+.reveal .type-band { padding: 9px 18px !important; }
+.reveal .types-stack { gap: 12px !important; }
+
+/* Structure cards: more padding, more space between heading/desc/example */
+.reveal .structure-card { padding: 28px 24px !important; min-height: 240px !important; }
+.reveal .structure-name { margin-bottom: 16px !important; }
+.reveal .structure-desc { margin-bottom: 22px !important; line-height: 1.5 !important; }
+.reveal .structure-ex { padding-top: 12px !important; }
+
+/* Engaging rows: more padding */
+.reveal .engaging-band { padding: 9px 18px !important; }
+.reveal .engaging-text { padding: 12px 18px !important; line-height: 1.65 !important; }
+.reveal .engaging-grid { gap: 12px !important; }
+.reveal .engaging-aside { padding: 12px 18px !important; margin-top: 16px !important; }
+.reveal .aside-line { padding: 5px 0 !important; line-height: 1.55 !important; }
+
+/* Sources bullets: more vertical rhythm */
+.reveal ul.sources-bullets li { padding: 9px 0 !important; line-height: 1.65 !important; }
+
+/* Variables table: more cell padding */
+.reveal table.vartypes-table th,
+.reveal table.vartypes-table td { padding: 12px 16px !important; line-height: 1.6 !important; }
+.reveal ul.vartypes-sub li { padding: 4px 0 !important; line-height: 1.6 !important; }
+.reveal .vartypes-block { margin: 6px 0 8px !important; }
+
+/* Box-grid 3-cards: more padding inside */
+.reveal .box { padding: 18px 18px !important; }
+.reveal .box-title { margin-bottom: 10px !important; }
+.reveal .box-body { line-height: 1.6 !important; margin-bottom: 10px !important; }
+.reveal .box-tag { padding-top: 8px !important; line-height: 1.5 !important; }
+
+/* Slide-key callout: more padding */
+.reveal .slide-key { padding: 14px 18px !important; line-height: 1.6 !important; margin-top: 18px !important; }
+
+/* Example callout (central tendency) */
+.reveal .example-callout { padding: 18px 22px !important; }
+.reveal ul.example-bullets li { padding: 5px 0 !important; line-height: 1.65 !important; }
+
+/* Answer block: more breathing */
+.reveal .answer-block { padding: 22px 26px !important; margin-top: 18px !important; }
+.reveal .answer-block p { line-height: 1.65 !important; margin-bottom: 14px !important; }
+.reveal .answer-block ul { margin: 10px 0 12px 26px !important; }
+.reveal .answer-block ul li { padding: 5px 0 !important; line-height: 1.6 !important; }
+
+/* CFU slides: more breathing */
+.reveal .cfu-frame { padding: 18px 12px !important; }
+.reveal .cfu-prompt { line-height: 1.55 !important; margin-bottom: 28px !important; }
+.reveal ol.cfu-options li { padding: 6px 0 !important; }
+.reveal ul.cfu-reflect li { padding: 6px 0 6px 28px !important; }
+.reveal .cfu-eyebrow { margin-bottom: 18px !important; }
+.reveal pre.cfu-code { padding: 16px 20px !important; line-height: 1.6 !important; margin: 18px 0 22px !important; }
+.reveal .cfu-foot { margin-top: 28px !important; }
+
+/* Reducing-information rows */
+.reveal .reducing-row { padding: 14px 18px !important; }
+.reveal .reducing-row p { line-height: 1.65 !important; }
+.reveal .reducing-grid { gap: 14px !important; }
+
+/* qlist (questions slides) */
+.reveal ul.qlist > li { padding: 7px 0 !important; line-height: 1.7 !important; }
+.reveal ul.qsublist > li { padding: 4px 0 !important; line-height: 1.55 !important; }
+
+/* Construct/measure cards */
+.reveal .construct-side { padding: 18px 22px !important; }
+.reveal .construct-label { margin-bottom: 10px !important; }
+.reveal .construct-text { margin-bottom: 10px !important; line-height: 1.55 !important; }
+
+/* This-week callout */
+.reveal .this-week-callout { padding: 16px 22px !important; margin-top: 24px !important; }
+.reveal .this-week-title { margin-bottom: 12px !important; }
+.reveal .this-week-callout .bullet-list.small li { padding: 4px 0 !important; line-height: 1.55 !important; }
+
+/* Title-rule: a touch more separation below */
+.reveal .title-rule { margin: 0 0 14px !important; }
+
+/* Bump h2 bottom margin so title doesn't crowd content */
+.reveal h2 { margin-bottom: 0.4em !important; }
+
+
+/* =============================================================================
+   FINAL FONT-SCALE BUMP — match CFU slide visual weight (24/21px)
+   ============================================================================= */
+
+/* Slide title up to match the substance of CFU prompts */
+.reveal h2 { font-size: 34px !important; }
+
+/* Tier 2 — leads and key callouts */
+.reveal .objectives-lead,
+.reveal .slide-lead,
+.reveal .slide-lead-large,
+.reveal .slide-key { font-size: 21px !important; line-height: 1.55 !important; }
+
+/* Tier 3 — DEFAULT bullets/body text (matches CFU options weight) */
+.reveal ul.bullet-list li,
+.reveal ol.bullet-list li,
+.reveal section > ul > li,
+.reveal section > ol > li,
+.reveal ul.bullet-list.large li,
+.reveal ol.bullet-list.large li { font-size: 21px !important; line-height: 1.7 !important; }
+
+/* Sub-bullets / small bullets — bumped up */
+.reveal ul.bullet-list.small li,
+.reveal ol.bullet-list.small li,
+.reveal ul.bullet-sub li,
+.reveal ul.qsublist li { font-size: 17px !important; line-height: 1.6 !important; }
+
+/* Captions / fine print */
+.reveal .small-text,
+.reveal .skew-labels,
+.reveal .screenshot-caption { font-size: 15px !important; line-height: 1.5 !important; }
+
+/* Eyebrows (these can stay small — they're labels) */
+.reveal .construct-label,
+.reveal .cfu-eyebrow { font-size: 14px !important; }
+
+/* TYPES STACK */
+.reveal .type-band       { font-size: 20px !important; padding: 10px 18px !important; }
+.reveal .type-bullets li { font-size: 19px !important; line-height: 1.65 !important; padding: 5px 0 !important; }
+
+/* PYRAMID */
+.reveal .pyramid-row   { font-size: 26px !important; padding: 12px 0 !important; }
+.reveal .pyramid-aside { font-size: 19px !important; line-height: 1.5 !important; }
+
+/* STRUCTURES */
+.reveal .structure-name { font-size: 22px !important; }
+.reveal .structure-desc { font-size: 20px !important; line-height: 1.55 !important; }
+.reveal .structure-ex   { font-size: 16px !important; }
+
+/* NAEP EXAMPLE BLOCKS */
+.reveal .example-name { font-size: 19px !important; }
+.reveal .example-text { font-size: 17px !important; line-height: 1.55 !important; }
+
+/* ENGAGING WITH DATA */
+.reveal .engaging-band { font-size: 20px !important; padding: 10px 18px !important; }
+.reveal .engaging-text { font-size: 18px !important; line-height: 1.6 !important; padding: 14px 18px !important; }
+.reveal .aside-line    { font-size: 16px !important; line-height: 1.5 !important; }
+
+/* SOURCES */
+.reveal ul.sources-bullets li { font-size: 19px !important; line-height: 1.65 !important; padding: 9px 0 !important; }
+
+/* VARIABLES TABLE */
+.reveal table.vartypes-table th { font-size: 18px !important; }
+.reveal table.vartypes-table td { font-size: 17px !important; line-height: 1.6 !important; }
+.reveal .vartypes-block         { font-size: 17px !important; }
+.reveal ul.vartypes-sub li      { font-size: 17px !important; line-height: 1.6 !important; }
+
+/* 3-CARD BOXES */
+.reveal .box-title { font-size: 19px !important; }
+.reveal .box-body  { font-size: 17px !important; line-height: 1.6 !important; }
+.reveal .box-tag   { font-size: 14px !important; line-height: 1.5 !important; }
+
+/* CENTRAL TENDENCY EXAMPLE */
+.reveal .example-callout { font-size: 18px !important; }
+.reveal .example-label   { font-size: 18px !important; }
+.reveal ul.example-bullets li { font-size: 18px !important; line-height: 1.65 !important; }
+
+/* VARIABILITY */
+.reveal .variability-text { font-size: 18px !important; }
+.reveal .variability-text .bold-heading { font-size: 19px !important; }
+.reveal .variability-text .small-text   { font-size: 16px !important; }
+.reveal .variability-text .bullet-list.small li { font-size: 17px !important; }
+
+/* CONSTRUCT VS MEASURE */
+.reveal .construct-text { font-size: 20px !important; }
+.reveal .construct-ex   { font-size: 16px !important; }
+
+/* ANSWER BLOCKS */
+.reveal .answer-block p { font-size: 20px !important; line-height: 1.65 !important; }
+.reveal .answer-block ul,
+.reveal .answer-block ul li { font-size: 19px !important; line-height: 1.6 !important; }
+
+/* KEY TERMS / QLIST */
+.reveal .key-terms     { font-size: 19px !important; }
+.reveal ul.qlist > li  { font-size: 19px !important; line-height: 1.75 !important; }
+
+/* THIS WEEK CALLOUT */
+.reveal .this-week-title { font-size: 19px !important; }
+.reveal .this-week-callout .bullet-list.small li { font-size: 17px !important; line-height: 1.55 !important; }
+
+
+/* =============================================================================
+   Reducing-the-information slide: vertically centered, larger cards
+   ============================================================================= */
+.reveal .reducing-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin: 36px auto 0;
+  max-width: 1100px;
+}
+.reveal .reducing-card {
+  background: rgba(46, 125, 50, 0.06);
+  border-left: 5px solid var(--gcs-green);
+  border-radius: 0 6px 6px 0;
+  padding: 22px 28px;
+  font-size: 22px !important;
+  line-height: 1.65 !important;
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.reveal .reducing-card strong { color: var(--gcs-green-deep); }
+
+
+/* =============================================================================
+   Types-of-data slide: compress bullets so all 3 rows fit
+   ============================================================================= */
+.reveal .type-bullets li { padding: 1px 0 !important; line-height: 1.45 !important; font-size: 17px !important; }
+.reveal .type-bullets { margin: 6px 0 6px 30px !important; }
+.reveal .type-band { padding: 6px 16px !important; font-size: 18px !important; }
+.reveal .types-stack { gap: 8px !important; }
+
+/* =============================================================================
+   Structure cards — SVG visualizations + tighter cards
+   ============================================================================= */
+.reveal .structure-card {
+  padding: 18px 18px !important;
+  min-height: auto !important;
+}
+.reveal .structure-name { margin-bottom: 8px !important; font-size: 20px !important; }
+.reveal .structure-desc { margin-bottom: 12px !important; font-size: 17px !important; }
+.reveal .structure-svg {
+  width: 100%;
+  max-height: 90px;
+  margin: 6px 0 12px;
+  display: block;
+}
+.reveal .structure-ex {
+  padding-top: 10px !important;
+  border-top: 1px solid #e0e0d8 !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+
+/* =============================================================================
+   Variables types table: recolor header to GCS green
+   ============================================================================= */
+.reveal table.vartypes-table th {
+  background: var(--gcs-green) !important;
+  color: #fff !important;
+}
+.reveal table.vartypes-table td:first-child {
+  background: rgba(46, 125, 50, 0.07) !important;
+  color: var(--gcs-green-deep) !important;
+}
+
+
+/* =============================================================================
+   Stata Variables window mock (slide: Variable Types in Stata)
+   ============================================================================= */
+.reveal .stata-vars-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+  margin-top: 8px;
+}
+
+.reveal .stata-vars-window {
+  background: #f5f5f0;
+  border: 1.5px solid #c7c7be;
+  border-radius: 4px;
+  font-family: 'Lucida Grande', 'Segoe UI', sans-serif;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.reveal .stata-vars-header {
+  background: linear-gradient(to bottom, #e7e7df 0%, #d6d6cc 100%);
+  border-bottom: 1px solid #b8b8af;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.02em;
+}
+
+.reveal .stata-vars-cols {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr;
+  background: #ebebe1;
+  border-bottom: 1px solid #c7c7be;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  padding: 5px 10px;
+  letter-spacing: 0.04em;
+}
+
+.reveal .stata-vars-body { padding: 4px 0; }
+
+.reveal .svrow {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr;
+  padding: 3px 10px;
+  font-size: 14px;
+  font-family: 'Lucida Console', 'Consolas', monospace;
+}
+
+.reveal .svrow:nth-child(odd) { background: rgba(255,255,255,0.55); }
+.reveal .svrow span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.reveal .svrow span:last-child { color: #444; font-family: 'Lucida Grande', sans-serif; font-size: 13px; padding-left: 6px; }
+
+.reveal .svrow.num span:first-child { color: #1d1d1d; }
+.reveal .svrow.lbl span:first-child { color: #2952c0; font-weight: 600; }
+.reveal .svrow.str span:first-child { color: #c00; }
+
+.reveal .stata-vars-key {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 16px;
+}
+
+.reveal .key-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px !important;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.reveal .key-dot {
+  display: inline-block;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.reveal .key-dot.black { background: #1d1d1d; }
+.reveal .key-dot.blue  { background: #2952c0; }
+.reveal .key-dot.red   { background: #c00; }
+
+.reveal .key-note {
+  margin-top: 6px;
+  font-size: 14px !important;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.reveal .key-note code {
+  font-family: 'Courier New', monospace;
+  background: #f0f0e8;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+
+
+/* =============================================================================
+   Final punch-list CSS fixes
+   ============================================================================= */
+
+/* Fix bullet overlap in This-week callout (padding-left was getting dropped) */
+.reveal .this-week-callout ul.bullet-list.small li {
+  padding-left: 28px !important;
+}
+
+/* Stata Vars window footnote */
+.reveal .stata-vars-foot {
+  font-size: 11px !important;
+  font-style: italic;
+  color: #888;
+  padding: 6px 12px 8px;
+  border-top: 1px solid #e0e0d8;
+  background: #f5f5f0;
+}
+
+/* q-roadmap (used for Agenda slide) — bump readability */
+.reveal .q-roadmap { margin-top: 12px; }
+.reveal .q-rm-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+.reveal .q-rm-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gcs-green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+.reveal .q-rm-text {
+  font-size: 20px !important;
+  line-height: 1.5 !important;
+  color: var(--text);
+}
+
+
+/* Intro slide spacing — wider margins, larger paragraph gaps */
+.reveal section.intro-slide .intro-body {
+  max-width: 1000px;
+  margin: 24px auto 0;
+  padding: 0 40px;
+}
+.reveal section.intro-slide .intro-body p {
+  font-size: 22px !important;
+  line-height: 1.7 !important;
+  margin-bottom: 32px !important;
+}
+.reveal section.intro-slide .intro-body p:last-child {
+  margin-bottom: 0 !important;
+}
+
+
+/* Skew SVG grid (3 distributions side-by-side) */
+.reveal .skew-svg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: end;
+}
+.reveal .skew-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reveal .skew-item svg {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 6px;
+}
+.reveal .skew-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gcs-green-deep);
+  letter-spacing: 0.04em;
+}
+
+
+/* Boxplot SVG to match skew figures visually */
+.reveal .outliers-figure { display: flex; flex-direction: column; align-items: center; }
+.reveal .boxplot-svg { width: 100%; max-width: 460px; height: auto; margin-bottom: 6px; }
+
+/* Skew caption (right side of outliers slide) */
+.reveal .skew-rule {
+  margin-top: 18px;
+  padding: 10px 14px;
+  background: rgba(46, 125, 50, 0.06);
+  border-left: 4px solid var(--gcs-green);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Balance outliers + skew layout vertically — stretch both columns to equal
+   height and push the skew caption to the bottom so both panels visually align. */
+.reveal .outliers-grid { align-items: stretch; gap: 28px; }
+.reveal .outliers-figure,
+.reveal .skew-figure { display: flex; flex-direction: column; height: 100%; }
+.reveal .skew-figure .skew-svg-grid {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+/* Boxplot caption — mirror skew-rule styling for symmetry */
+.reveal .boxplot-rule {
+  margin-top: 18px;
+  padding: 10px 14px;
+  background: rgba(46, 125, 50, 0.06);
+  border-left: 4px solid var(--gcs-green);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  border-radius: 0 4px 4px 0;
+}
