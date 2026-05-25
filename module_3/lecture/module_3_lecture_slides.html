@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="module_3_lecture_slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="module_3_lecture_slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="module_3_lecture_slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="module_3_lecture_slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="module_3_lecture_slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="module_3_lecture_slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="module_3_lecture_slides_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <title>Module 3 — How Quantitative Data Are Used in Practice and Research</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="module_3_lecture_slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="module_3_lecture_slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="module_3_lecture_slides_files/libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="module_3_lecture_slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="module_3_lecture_slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="module_3_lecture_slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="module_3_lecture_slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-state="title-slide" class="quarto-title-block center">
+  <h1 class="title">Module 3 — How Quantitative Data Are Used in Practice and Research</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="section" class="slide level2 title-slide center" data-runner="">
+<h2></h2>
+<div class="center">
+<h1>
+How Quantitative Data Are Used in Practice and Research
+</h1>
+<div class="accent">
+
+</div>
+<div class="subtitle">
+Module 3 &nbsp;•&nbsp; Recorded Lecture
+</div>
+<div class="course-label">
+EDA6931 &nbsp;|&nbsp; Quantitative Methods in Educational Administration
+</div>
+</div>
+
+</section>
+<section id="from-data-to-research" class="slide level2 intro-slide" data-runner="Module 3">
+<h2>From Data to Research</h2>
+<div class="title-rule">
+
+</div>
+<div class="intro-body">
+<p>In Module 1, we observed sources of quantitative data that arise in educational contexts as a function of administrative practices (e.g., attendance, per-pupil spending) and policy (e.g., standardized assessment scores used for state accountability). In Module 2, we worked with statistical tools to summarize information about the distributions of variables contained in these quantitative datasets.</p>
+<p>How do we use analytic tools to turn this data into organized insight for policy and practice? This is the task of research: a systematic process by which we develop new knowledge from evidence.</p>
+</div>
+
+</section>
+<section id="agenda" class="slide level2" data-runner="Module 3">
+<h2>Agenda</h2>
+<div class="title-rule">
+
+</div>
+<div class="q-roadmap">
+<div class="q-rm-row">
+<div class="q-rm-num">
+1
+</div>
+<div class="q-rm-text">
+<strong>What is research?</strong> — from exploration to systematic inquiry
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+2
+</div>
+<div class="q-rm-text">
+<strong>Two types of research questions</strong> — descriptive and causal
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+3
+</div>
+<div class="q-rm-text">
+<strong>Test score data</strong> — scale scores, proficiency levels, and why they matter
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+4
+</div>
+<div class="q-rm-text">
+<strong>This week’s readings</strong> — how Gordon &amp; Conaway frame the work
+</div>
+</div>
+</div>
+
+</section>
+<section id="section-1" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 1 of 4
+</div>
+<div class="divider-title">
+What Is Research?
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="what-is-research" class="slide level2" data-runner="Part 1 · What Is Research">
+<h2>What Is Research?</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+Research is the systematic process by which we develop new knowledge from evidence.
+</div>
+<div class="box-grid cols-2">
+<div class="box grey">
+<div class="box-title">
+Exploration (Modules 1-2)
+</div>
+<div class="box-body">
+Open a dataset. Run <code>summarize</code>. Make a histogram. Ask: what does this variable look like? The goal is familiarity with the data.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+Research (Module 3 onward)
+</div>
+<div class="box-body">
+Start with a specific question. Choose an analytic strategy that can answer it. Draw conclusions supported by evidence. The goal is new knowledge.
+</div>
+</div>
+</div>
+
+</section>
+<section id="quantitative-research-is-influential-in-education" class="slide level2" data-runner="Part 1 · What Is Research">
+<h2>Quantitative Research Is Influential in Education</h2>
+<div class="title-rule">
+
+</div>
+<div class="pyramid-layout">
+<div class="pyramid-visual">
+<p><img src="images/pyramid.svg" alt="Hub diagram: Quantitative Research in Education at center, connected to three nodes — Policy (decision-making using research evidence), Academic Research (develop new educational knowledge), and Practice (data-driven instruction and resource allocation)."></p>
+</div>
+<div class="pyramid-text">
+<div class="slide-quote">
+“We review the research on the different programs, products, practices, and policies in education. Then, by focusing on the results from high-quality research, we try to answer the question ‘What works in education?’”
+<div class="slide-quote-source">
+— Institute of Education Sciences, What Works Clearinghouse
+</div>
+</div>
+<div class="slide-lead">
+Federal and state education policy relies on quantitative evidence to guide decisions about programs, funding, and accountability. The Every Student Succeeds Act (ESSA) requires states to use “evidence-based” interventions. The evidence base behind those standards is largely quantitative.
+</div>
+</div>
+</div>
+
+</section>
+<section id="section-2" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 2 of 4
+</div>
+<div class="divider-title">
+Two Types of Research Questions
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="two-types-of-research-questions" class="slide level2" data-runner="Part 2 · Research Questions">
+<h2>Two Types of Research Questions</h2>
+<div class="title-rule">
+
+</div>
+<div class="rq-comparison">
+<div class="rq-col descriptive">
+<div class="rq-col-title">
+Descriptive
+</div>
+<div class="rq-col-body">
+<span class="rq-keyword">What is happening?</span> Provide descriptive statistics for an outcome (e.g., test score trends over time). Identify relationships between a predictor (e.g., attendance) and an outcome (e.g., student grades).
+<div class="rq-example">
+<strong>Focus of this course.</strong>
+</div>
+</div>
+</div>
+<div class="rq-col causal">
+<div class="rq-col-title">
+Causal
+</div>
+<div class="rq-col-body">
+<span class="rq-keyword">Does X cause Y?</span> Demonstrate a predictor’s causal <em>impact</em> on an outcome (e.g., to what extent does attendance <em>determine</em> grades?). Aims to remove “selection bias” from the descriptive relationships we observe between variables.
+<div class="rq-example">
+Covered conceptually later in the course, but we will not conduct causal analyses.
+</div>
+</div>
+</div>
+</div>
+
+</section>
+<section id="research-question-examples" class="slide level2" data-runner="Part 2 · Research Questions">
+<h2>Research Question Examples</h2>
+<div class="title-rule">
+
+</div>
+<div class="rq-comparison">
+<div class="rq-col descriptive">
+<div class="rq-col-title">
+Descriptive
+</div>
+<div class="rq-col-body">
+<p>• What are attendance patterns across elementary schools in a district?<br><br> • How do teacher retention rates vary by school locale (urban, suburban, rural)?<br><br> • How have patterns of school segregation changed in the past decade?</p>
+</div>
+</div>
+<div class="rq-col causal">
+<div class="rq-col-title">
+Causal
+</div>
+<div class="rq-col-body">
+<p>• Does participation in a high-dosage tutoring program <em>improve</em> students’ math achievement?<br><br> • What is the <em>effect</em> of reducing class size on teacher job satisfaction?<br><br> • Does sports participation <em>influence</em> student attendance?</p>
+</div>
+</div>
+</div>
+<div class="slide-lead">
+Notice the language: descriptive questions ask <em>what</em>, <em>how</em>, and <em>how much</em>. Causal questions use words like <em>improve</em>, <em>effect</em>, and <em>influence</em> — they claim one thing produces a change in another.
+</div>
+
+</section>
+<section id="section-3" class="slide level2 cfu">
+<h2></h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 1
+</div>
+<h2 class="cfu-prompt">
+A district administrator asks: “How has the four-year graduation rate in our district changed over the past decade?” Is this a descriptive or causal research question?
+</h2>
+<ol class="cfu-options" type="A">
+<li>
+Descriptive — it documents a trend over time
+</li>
+<li>
+Causal — it asks whether something caused the graduation rate to change
+</li>
+<li>
+Both — it is descriptive but implies a causal claim
+</li>
+<li>
+Neither — it is not a research question
+</li>
+</ol>
+</div>
+
+</section>
+<section id="answer-a-descriptive" class="slide level2 vcenter" data-runner="Part 2 · Research Questions">
+<h2>Answer: A — Descriptive</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+The question asks <strong>what happened</strong> to graduation rates over time. It documents a trend. It does not ask <em>why</em> the rate changed or whether a specific policy or program caused the change.
+</p>
+<p>
+If the administrator asked “Did our new advising program increase the graduation rate?” — that would be a causal question, because it claims a specific intervention produced a specific outcome.
+</p>
+</div>
+
+</section>
+<section id="section-4" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 3 of 4
+</div>
+<div class="divider-title">
+Test Score Data
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="test-score-data-what-the-numbers-represent" class="slide level2" data-runner="Part 3 · Test Score Data">
+<h2>Test Score Data: What the Numbers Represent</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+In Module 4, you will use the Gatorville data to compare test scores across groups of students and benchmark those comparisons against Florida statewide data. Before you start, it helps to understand what test scores actually represent and why we use scale scores rather than proficiency rates for analysis.
+</div>
+<div class="score-anatomy">
+<div class="score-card">
+<div class="score-card-title">
+Proficiency Rate
+</div>
+<div class="score-card-body">
+The percentage of students scoring at or above a predetermined cut score. Simple and intuitive: “62% of third graders met the standard.” Used for accountability (school grades, ESSA), identifying students for intervention, and comparing subgroups.
+</div>
+<div class="score-card-example">
+Limitation: the cut score is a policy choice, not a natural boundary. Move it up or down and the rate changes — same students, same learning.
+</div>
+</div>
+<div class="score-card">
+<div class="score-card-title">
+Scale Score
+</div>
+<div class="score-card-body">
+A continuous number on a standardized metric that preserves the full distribution of student performance. A given score means the same thing across test forms, grades, and years. Mean, standard deviation, and sub-scores are all available.
+</div>
+<div class="score-card-example">
+In the GCS assessments data, <code>scale_score</code> is a scale score for each student-subject-year. In the Florida DOE data, <code>meanread</code> is an average reading scale score at the district-grade level.
+</div>
+</div>
+</div>
+
+</section>
+<section id="why-scale-scores-are-preferred-for-analysis" class="slide level2" data-runner="Part 3 · Test Score Data">
+<h2>Why Scale Scores Are Preferred for Analysis</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+Proficiency rates are useful for communication — “65% met the standard” is easy for a school board to interpret. But for analysis, scale scores give you the full picture.
+</div>
+<div class="box-grid cols-2">
+<div class="box">
+<div class="box-title">
+Proficiency rate
+</div>
+<div class="box-body">
+“62% met the standard.” One number. Information about variation within and across groups is lost. Two schools with the same rate may have very different underlying distributions.
+</div>
+</div>
+<div class="box blue">
+<div class="box-title">
+Scale score
+</div>
+<div class="box-body">
+Mean = 312, SD = 24. The full distribution is preserved. You can compute meaningful averages, make precise comparisons, and detect differences that proficiency rates would hide.
+</div>
+</div>
+</div>
+<div class="slide-lead">
+The type of score you use changes the story you tell. For this course, you will work with scale scores because they preserve the information you need to make rigorous comparisons.
+</div>
+
+</section>
+<section id="proficiency-levels-at-a-glance" class="slide level2" data-runner="Part 3 · Test Score Data">
+<h2>Proficiency Levels at a Glance</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+States typically report proficiency as a set of labeled categories. This visual shows the structure.
+</div>
+<div class="prof-bar-container">
+<div class="prof-bar">
+<div class="prof-segment level-1">
+Level 1
+</div>
+<div class="prof-segment level-2">
+Level 2
+</div>
+<div class="prof-segment level-3">
+Level 3
+</div>
+<div class="prof-segment level-4">
+Level 4
+</div>
+</div>
+<div class="prof-labels">
+<div class="prof-label">
+Below Basic
+</div>
+<div class="prof-label">
+Basic
+</div>
+<div class="prof-label">
+Proficient
+</div>
+<div class="prof-label">
+Advanced
+</div>
+</div>
+</div>
+<div class="slide-lead">
+Each level is defined by a cut score on the underlying scale. A student scoring 311 might be “Basic” while a student scoring 312 is “Proficient” — one point apart, different labels. The construct-measure gap from Module 2 applies here: test scores are a <em>measure</em> of academic achievement, not the construct itself.
+</div>
+
+</section>
+<section id="section-5" class="slide level2 cfu">
+<h2></h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 2
+</div>
+<h2 class="cfu-prompt">
+A researcher wants to compare average reading achievement across 66 Florida school districts. Should they use scale scores or proficiency levels for this comparison, and why?
+</h2>
+<ol class="cfu-options" type="A">
+<li>
+Scale scores — they are continuous and preserve variation across districts
+</li>
+<li>
+Proficiency levels — they are easier to interpret and communicate
+</li>
+<li>
+Either would work equally well for this purpose
+</li>
+<li>
+Neither — district-level comparisons require a different measure
+</li>
+</ol>
+</div>
+
+</section>
+<section id="answer-a-scale-scores" class="slide level2 vcenter" data-runner="Part 3 · Test Score Data">
+<h2>Answer: A — Scale Scores</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+For comparing <strong>averages</strong> across districts, scale scores are the right tool. They are continuous, preserve the full range of variation, and allow you to compute meaningful means and make precise comparisons.
+</p>
+<p>
+Proficiency levels would tell you the <em>percentage</em> of students at each level, which is a different (and also useful) comparison — but it does not give you an average achievement measure.
+</p>
+<p>
+This is exactly the kind of analysis you will do in Module 4 with the Gatorville and Florida statewide data.
+</p>
+</div>
+
+</section>
+<section id="section-6" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 4 of 4
+</div>
+<div class="divider-title">
+This Week’s Readings
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="this-weeks-readings" class="slide level2" data-runner="Part 4 · Readings">
+<h2>This Week’s Readings</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+This module is built around Gordon and Conaway’s <em>Common-Sense Evidence</em>.
+</div>
+<div class="box-grid cols-3">
+<div class="box">
+<div class="box-title">
+Introduction
+</div>
+<div class="box-body">
+The case for evidence-based decision-making in education. What counts as evidence, and why leaders need to engage with it.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+Chapter 1
+</div>
+<div class="box-body">
+<strong>Turn Problems of Practice Into Research Questions.</strong> The framework you will use in this week’s assignment: problem statement, diagnosis, five whys, strategies.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+Chapter 5, pp.&nbsp;85-89
+</div>
+<div class="box-body">
+<strong>Build Evidence by Learning From Your Own Data.</strong> Connects Modules 1-2 (working with data) to Module 3 (using data for research).
+</div>
+</div>
+</div>
+
+</section>
+<section id="looking-ahead-to-module-4" class="slide level2 vcenter" data-runner="Module 3">
+<h2>Looking Ahead to Module 4</h2>
+<div class="title-rule">
+
+</div>
+<ul class="ahead-list">
+<li>
+<strong>Module 4: Making Comparisons with Quantitative Data</strong> — your first graded Stata assignment
+</li>
+<li>
+Conditional means, bar graphs of means, box plots by group
+</li>
+<li>
+You will use the GCS data to compare test scores across groups, and benchmark against Florida statewide data
+</li>
+<li>
+If you have not yet tried the optional practice file from Module 2, this week is a good time
+</li>
+</ul>
+
+<script>
+// Global footer overlay — reads data-runner from each slide section
+// Lives outside the slides container so it can't be clipped by Reveal.js scaling
+document.addEventListener('DOMContentLoaded', function() {
+  var footer = document.createElement('div');
+  footer.id = 'global-runner';
+  document.querySelector('.reveal').appendChild(footer);
+
+  function updateRunner() {
+    var slide = Reveal.getCurrentSlide();
+    var runner = slide ? slide.getAttribute('data-runner') : '';
+    if (runner) {
+      footer.textContent = runner + '  |  Huffaker · EDA6931 · Module 3';
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
+  }
+
+  Reveal.on('slidechanged', updateRunner);
+  Reveal.on('ready', updateRunner);
+});
+</script>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="module_3_lecture_slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 4.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

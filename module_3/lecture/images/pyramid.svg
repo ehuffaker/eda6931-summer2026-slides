@@ -1,0 +1,31 @@
+<svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Connecting lines (behind everything) -->
+  <line x1="260" y1="200" x2="260" y2="58" stroke="#90A4AE" stroke-width="2" opacity="0.4"/>
+  <line x1="260" y1="200" x2="108" y2="330" stroke="#90A4AE" stroke-width="2" opacity="0.4"/>
+  <line x1="260" y1="200" x2="412" y2="330" stroke="#90A4AE" stroke-width="2" opacity="0.4"/>
+
+  <!-- Center hub -->
+  <circle cx="260" cy="200" r="72" fill="#1B5E20" opacity="0.92"/>
+  <text x="260" y="190" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="Calibri, sans-serif">Quantitative</text>
+  <text x="260" y="206" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="Calibri, sans-serif">Research in</text>
+  <text x="260" y="222" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="Calibri, sans-serif">Education</text>
+
+  <!-- Top node: Policy -->
+  <circle cx="260" cy="58" r="52" fill="#2E7D32" opacity="0.92"/>
+  <text x="260" y="50" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="Calibri, sans-serif">Policy</text>
+  <text x="260" y="66" text-anchor="middle" fill="white" font-size="9" font-family="Calibri, sans-serif" opacity="0.85">decision-making using</text>
+  <text x="260" y="77" text-anchor="middle" fill="white" font-size="9" font-family="Calibri, sans-serif" opacity="0.85">research evidence</text>
+
+  <!-- Bottom-left node: Academic Research -->
+  <circle cx="108" cy="330" r="62" fill="#2E7D32" opacity="0.92"/>
+  <text x="108" y="318" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="Calibri, sans-serif">Academic</text>
+  <text x="108" y="334" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="Calibri, sans-serif">Research</text>
+  <text x="108" y="352" text-anchor="middle" fill="white" font-size="9" font-family="Calibri, sans-serif" opacity="0.85">develop new educational</text>
+  <text x="108" y="363" text-anchor="middle" fill="white" font-size="9" font-family="Calibri, sans-serif" opacity="0.85">knowledge</text>
+
+  <!-- Bottom-right node: Practice -->
+  <circle cx="412" cy="330" r="62" fill="#2E7D32" opacity="0.92"/>
+  <text x="412" y="322" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="Calibri, sans-serif">Practice</text>
+  <text x="412" y="342" text-anchor="middle" fill="white" font-size="9" font-family="Calibri, sans-serif" opacity="0.85">data-driven instruction</text>
+  <text x="412" y="353" text-anchor="middle" fill="white" font-size="9" font-family="Calibri, sans-serif" opacity="0.85">and resource allocation</text>
+</svg>
