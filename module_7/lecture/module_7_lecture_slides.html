@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="module_7_lecture_slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="module_7_lecture_slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="module_7_lecture_slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="module_7_lecture_slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="module_7_lecture_slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="module_7_lecture_slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="module_7_lecture_slides_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <title>Module 7: T-Tests and ANOVA</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="module_7_lecture_slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="module_7_lecture_slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="module_7_lecture_slides_files/libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="module_7_lecture_slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="module_7_lecture_slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="module_7_lecture_slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="module_7_lecture_slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="section" class="slide level2 title-slide center" data-runner="">
+<h2></h2>
+<div class="center">
+<h1>
+T-Tests and ANOVA
+</h1>
+<div class="accent">
+
+</div>
+<div class="subtitle">
+Module 7 &nbsp;•&nbsp; How different are these groups, really?
+</div>
+<div class="course-label">
+EDA6931 &nbsp;|&nbsp; Quantitative Methods in Educational Administration
+</div>
+</div>
+
+</section>
+<section id="section-1" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 1
+</div>
+<div class="divider-title">
+Comparing Group Means
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="questions-worth-asking" class="slide level2" data-runner="Part 1 · Comparing Group Means">
+<h2>Questions Worth Asking</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+Education leaders, researchers, and policymakers ask lots of questions that compare groups — not just whether they differ in categories, but whether their outcomes are different on average.
+</div>
+<div class="box-grid cols-1" style="gap:14px;">
+<div class="box blue">
+<div class="box-body">
+Do students in full-day kindergarten score higher on reading tests?
+</div>
+</div>
+<div class="box blue">
+<div class="box-body">
+Is there a gender gap in school attendance rates?
+</div>
+</div>
+<div class="box blue">
+<div class="box-body">
+Do students from higher-income families arrive with stronger skills?
+</div>
+</div>
+</div>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>These are questions about averages: are the means different enough to matter? Today we learn a test that can answer them.</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="the-procedure-revisited" class="slide level2" data-runner="Part 1 · Comparing Group Means">
+<h2>The Procedure (Revisited)</h2>
+<div class="title-rule">
+
+</div>
+<div class="q-roadmap">
+<div class="q-rm-row">
+<div class="q-rm-num">
+1
+</div>
+<div class="q-rm-text">
+Start with a question — here, about a difference in means.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+2
+</div>
+<div class="q-rm-text">
+Assume no difference — the null hypothesis.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+3
+</div>
+<div class="q-rm-text">
+Look at the data — run the test in Stata.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+4
+</div>
+<div class="q-rm-text">
+Ask how surprising the result is — the p-value.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+5
+</div>
+<div class="q-rm-text">
+Make a decision.
+</div>
+</div>
+</div>
+<div class="slide-lead">
+Same procedure as chi-square. Different type of test.
+</div>
+
+</section>
+<section id="from-categories-to-means" class="slide level2" data-runner="Part 1 · Comparing Group Means">
+<h2>From Categories to Means</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+Last module: are categories distributed differently across groups? This module: are the averages different between groups?
+</div>
+<div class="box-grid cols-3">
+<div class="box grey">
+<div class="box-title">
+LAST MODULE · Chi-Square Tests
+</div>
+<div class="box-body">
+Are categories distributed differently across groups?<br><br><em>Categorical × Categorical</em>
+</div>
+</div>
+<div class="box orange">
+<div class="box-title">
+TODAY · t-Tests
+</div>
+<div class="box-body">
+Are the means different between groups?<br><br><em>Continuous × Binary</em>
+</div>
+</div>
+<div class="box grey">
+<div class="box-title">
+COMING SOON · Regression
+</div>
+<div class="box-body">
+How do multiple factors relate to an outcome?<br><br><em>Multiple predictors at once</em>
+</div>
+</div>
+</div>
+<div class="slide-lead" style="margin-top:1em;">
+Same five-step procedure each time. Different type of comparison.
+</div>
+
+</section>
+<section id="section-2" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 2
+</div>
+<div class="divider-title">
+The Data and the Comparison
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="the-data-ecls-k" class="slide level2" data-runner="Part 2 · The Data and the Comparison">
+<h2>The Data: ECLS-K</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+In Florida, kindergarten schedules vary across districts — some offer full-day, some half-day, some give families a choice. Does it matter for learning?
+</div>
+<div class="box-grid cols-2">
+<div class="box blue">
+<div class="box-title">
+Our question
+</div>
+<div class="box-body">
+<strong>Does full-day kindergarten boost reading scores?</strong><br><br>This is a t-test question: is the average reading score different between two groups?
+</div>
+</div>
+<div class="box blue">
+<div class="box-title">
+Dataset: ECLS-K:2011
+</div>
+<div class="box-body">
+~18,000 kindergarteners nationally — same data as Module 6.<br><strong>x1rscalk1</strong> — reading IRT scale score at entry.<br><strong>fullday</strong> — full-day vs.&nbsp;half-day K.<br>~12,300 full-day &nbsp;|&nbsp; ~2,600 half-day
+</div>
+</div>
+</div>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Many of you will use ECLS-K for your capstone, so this is more practice with it.</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="descriptive-comparison" class="slide level2" data-runner="Part 2 · The Data and the Comparison">
+<h2>Descriptive Comparison</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-code">
+<code>tabstat x1rscalk1, by(fullday) stat(mean sd n)</code>
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/descriptive_comparison.png" alt="A bar chart of mean reading scores by kindergarten schedule. Half-day children average 38.37; full-day children average 37.02. The two bars are nearly the same height."></p>
+</div>
+<div class="fig-cap">
+<p>Half-day: 38.37 (SD 10.71) &nbsp;|&nbsp; Full-day: 37.02 (SD 9.33). The difference is 1.35 points.<br> <strong>Wait — half-day students score higher. Is that real, or just noise — and what explains it?</strong></p>
+</div>
+</div>
+
+</section>
+<section id="visualizing-the-difference" class="slide level2" data-runner="Part 2 · The Data and the Comparison">
+<h2>Visualizing the Difference</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/boxplot.png" alt="Side-by-side box plots of reading scores for half-day and full-day kindergarteners. The boxes overlap heavily; medians are close, around 36; the spread within each group is large relative to the small gap between them."></p>
+</div>
+<div class="fig-cap">
+<p>Lots of overlap. The difference in means is real, but small relative to the variation <em>within</em> each group.</p>
+</div>
+</div>
+
+</section>
+<section id="reading-the-output" class="slide level2 cfu" data-runner="Part 2 · The Data and the Comparison">
+<h2>Reading the Output</h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 1
+</div>
+<h2 class="cfu-prompt">
+Look at the descriptive output. Which group has the higher average reading score?
+</h2>
+<ol class="cfu-options" type="A">
+<li>
+Full-day kindergarten (37.02)
+</li>
+<li>
+Half-day kindergarten (38.37)
+</li>
+<li>
+They are exactly the same
+</li>
+<li>
+We can’t tell from this output
+</li>
+</ol>
+</div>
+
+</section>
+<section id="answer-b-half-day-38.37" class="slide level2 vcenter" data-runner="Part 2 · The Data and the Comparison">
+<h2>Answer: B, Half-Day (38.37)</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+The answer is <strong>B — half-day kindergarten, with a mean of 38.37</strong>, compared to 37.02 for full-day. A good reminder to read your output carefully rather than assuming the answer.
+</p>
+<p>
+So the means differ — 38.37 versus 37.02. But is that difference real, or could it be random noise? We’re looking at a sample, not the whole population. That is exactly what the t-test is built to answer.
+</p>
+</div>
+
+</section>
+<section id="section-3" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 3
+</div>
+<div class="divider-title">
+The t-Test
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="what-is-a-t-test" class="slide level2" data-runner="Part 3 · The t-Test">
+<h2>What Is a t-Test?</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-layout">
+<div class="fig-img">
+<p><img src="images/two_distributions.png" alt="Two overlapping bell-shaped distributions of reading scores, one for half-day and one for full-day kindergarten, with their means marked by dashed lines close together. The curves overlap substantially."></p>
+</div>
+<div class="fig-text">
+<div class="slide-lead">
+A t-test compares the means of two groups and asks: is the difference large enough — relative to the variability — to be more than random noise?
+</div>
+<p>
+Very different means with little spread → convincing.<br> Slightly different means with lots of spread → could be chance.
+</p>
+</div>
+</div>
+
+</section>
+<section id="the-t-statistic" class="slide level2" data-runner="Part 3 · The t-Test">
+<h2>The t-Statistic</h2>
+<div class="title-rule">
+
+</div>
+<div class="code-card" style="text-align:center;font-size:1.05em;">
+<code>t&nbsp;=&nbsp;(Mean₁ − Mean₂) ÷ standard error of the difference</code>
+</div>
+<div class="slide-lead">
+You won’t be quizzed on the formula — but it helps to see what’s under the hood.
+</div>
+<div class="box-grid cols-3">
+<div class="box">
+<div class="box-title">
+Bigger difference in means
+</div>
+<div class="box-body">
+Numerator grows → larger t.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+Less variability
+</div>
+<div class="box-body">
+Denominator shrinks → larger t.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+Larger sample
+</div>
+<div class="box-body">
+Denominator shrinks → larger t.
+</div>
+</div>
+</div>
+
+</section>
+<section id="running-it-in-stata" class="slide level2" data-runner="Part 3 · The t-Test">
+<h2>Running It in Stata</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-code">
+<code>ttest x1rscalk1, by(fullday)</code>
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/ttest_output.png" alt="Stata output for ttest x1rscalk1 by fullday. Half-day: 2,594 children, mean 38.375. Full-day: 12,302 children, mean 37.022. Difference 1.352. t equals 6.5265, 14,894 degrees of freedom, two-sided p-value 0.0000."></p>
+</div>
+<div class="fig-cap">
+<p><code>ttest</code>, then the continuous outcome, then <code>by()</code> with the two-group variable. Stata does the rest.</p>
+</div>
+</div>
+
+</section>
+<section id="reading-the-output-1" class="slide level2" data-runner="Part 3 · The t-Test">
+<h2>Reading the Output</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/ttest_output.png" alt="The same Stata t-test output: group means 38.37 and 37.02, difference 1.35, t equals 6.53, degrees of freedom 14,894, two-sided p-value 0.0000."></p>
+</div>
+</div>
+<div class="box-grid cols-3" style="margin-top:0.5em;">
+<div class="box blue">
+<div class="box-title">
+Group means
+</div>
+<div class="box-body">
+38.37 vs.&nbsp;37.02 → difference of 1.35 points.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+t-statistic
+</div>
+<div class="box-body">
+6.53 — the difference is ~6.5 standard errors from zero.
+</div>
+</div>
+<div class="box orange">
+<div class="box-title">
+p-value
+</div>
+<div class="box-body">
+0.0000 — and the 95% CI [0.95, 1.76] excludes zero.
+</div>
+</div>
+</div>
+
+</section>
+<section id="applying-the-procedure" class="slide level2" data-runner="Part 3 · The t-Test">
+<h2>Applying the Procedure</h2>
+<div class="title-rule">
+
+</div>
+<div class="q-roadmap">
+<div class="q-rm-row">
+<div class="q-rm-num">
+1
+</div>
+<div class="q-rm-text">
+<strong>Question.</strong> Do full-day and half-day K students differ in average reading scores?
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+2
+</div>
+<div class="q-rm-text">
+<strong>Null.</strong> No difference in average reading scores.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+3
+</div>
+<div class="q-rm-text">
+<strong>Data.</strong> Half-day students score about 1.35 points higher.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+4
+</div>
+<div class="q-rm-text">
+<strong>Test.</strong> t = 6.53, df = 14,894, p &lt; 0.001.
+</div>
+</div>
+<div class="q-rm-row">
+<div class="q-rm-num">
+5
+</div>
+<div class="q-rm-text">
+<strong>Decision.</strong> Reject H₀ — a statistically significant difference.
+</div>
+</div>
+</div>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Does this mean half-day K is <em>better</em>? No — the families who choose half-day may differ in important ways (income, parent education). The t-test tells us the groups differ, not why. Correlation is not causation.</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="writing-up-your-decision" class="slide level2" data-runner="Part 3 · The t-Test">
+<h2>Writing Up Your Decision</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+Running the test is only half the job — you also need to communicate the decision clearly in writing.
+</div>
+<div class="box green" style="padding:22px 26px;">
+<div class="box-title">
+Model sentence — significant result
+</div>
+<div class="box-body" style="font-style:italic;">
+“A two-sample t-test revealed a statistically significant difference in mean reading scores between half-day and full-day kindergarteners (t = 6.53, p &lt; 0.001). Half-day students scored higher on average — 38.37 compared to 37.02.”
+</div>
+</div>
+<div class="slide-lead" style="margin-top:0.8em;">
+The recipe: name the test, state whether it’s significant, report the evidence, give the direction with the actual means.
+</div>
+
+</section>
+<section id="interpreting-t-test-output" class="slide level2 cfu" data-runner="Part 3 · The t-Test">
+<h2>Interpreting t-Test Output</h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 2
+</div>
+<h2 class="cfu-prompt">
+A researcher runs <code>ttest mathscore, by(tutoring)</code> and gets p = 0.03. Which interpretation is most appropriate?
+</h2>
+<ol class="cfu-options" type="A">
+<li>
+Tutoring definitely causes higher math scores
+</li>
+<li>
+There is a statistically significant difference in mean math scores between tutored and non-tutored students
+</li>
+<li>
+The difference is practically important
+</li>
+<li>
+97% of tutored students scored higher
+</li>
+</ol>
+</div>
+
+</section>
+<section id="answer-b" class="slide level2 vcenter" data-runner="Part 3 · The t-Test">
+<h2>Answer: B</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+The answer is <strong>B — there is a statistically significant difference in mean math scores between tutored and non-tutored students.</strong>
+</p>
+<p>
+A is wrong because a t-test cannot establish causation. C is wrong because statistical significance does not by itself mean practical importance. D is a common misconception — the p-value is not the percentage of students who scored higher.
+</p>
+</div>
+
+</section>
+<section id="section-4" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 4
+</div>
+<div class="divider-title">
+Standardizing Scores (Z-Scores)
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="why-standardize" class="slide level2" data-runner="Part 4 · Standardizing Scores">
+<h2>Why Standardize?</h2>
+<div class="title-rule">
+
+</div>
+<div class="box-grid cols-2">
+<div class="box blue">
+<div class="box-title">
+Problem 1 — Interpretation
+</div>
+<div class="box-body">
+The average reading score is 37.26. Is that good? Bad? On an IRT scale, the raw number has no obvious meaning.
+</div>
+</div>
+<div class="box blue">
+<div class="box-title">
+Problem 2 — Comparison
+</div>
+<div class="box-body">
+Reading mean ≈ 37, math mean ≈ 30. Different scales — a score of 35 means something different on each test.
+</div>
+</div>
+</div>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Standardizing (z-scores) solves both at once: convert to standard-deviation units. A z-score of 0 is average; +1 is one SD above average — a scale anyone can read.</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="standardizing-in-stata" class="slide level2" data-runner="Part 4 · Standardizing Scores">
+<h2>Standardizing in Stata</h2>
+<div class="title-rule">
+
+</div>
+<div class="code-card">
+<code>egen zread = std(x1rscalk1)</code>
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/summarize_beforeafter.png" alt="Before-and-after Stata summarize output. Before: x1rscalk1 has 15,669 observations, mean 37.32, SD 9.66, min 21.51, max 90.35. After: zread has the same 15,669 observations, mean 0.00, SD 1.00, min minus 1.64, max 5.49."></p>
+</div>
+<div class="fig-cap">
+<p>Same data, new scale: mean becomes 0, SD becomes 1. Use <code>egen</code> (not <code>generate</code>) for standardizing.</p>
+</div>
+</div>
+
+</section>
+<section id="interpreting-z-scores" class="slide level2" data-runner="Part 4 · Standardizing Scores">
+<h2>Interpreting Z-Scores</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-layout">
+<div class="fig-img">
+<p><img src="images/bellcurve_z.png" alt="A standard normal bell curve centered at a mean of zero, with dotted lines marking minus one and plus one standard deviation. The center is labeled as the mean."></p>
+</div>
+<div class="fig-text">
+<div class="slide-lead">
+Center is 0 (the mean); each unit is one standard deviation.
+</div>
+<p>
+z = +1.5 → 1.5 SDs above average.<br> z = −0.5 → half an SD below average.<br> ~68% of scores fall within ±1 SD; ~95% within ±2 SD.
+</p>
+</div>
+</div>
+
+</section>
+<section id="z-score-interpretation" class="slide level2 cfu" data-runner="Part 4 · Standardizing Scores">
+<h2>Z-Score Interpretation</h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 3
+</div>
+<h2 class="cfu-prompt">
+A student has a z-score of −0.5 on a reading test. What does this mean?
+</h2>
+<ol class="cfu-options" type="A">
+<li>
+The student scored 50% on the test
+</li>
+<li>
+The student scored half a standard deviation below the mean
+</li>
+<li>
+The student is in the bottom 5% of scores
+</li>
+<li>
+The student scored 0.5 points below the mean
+</li>
+</ol>
+</div>
+
+</section>
+<section id="answer-b-1" class="slide level2 vcenter" data-runner="Part 4 · Standardizing Scores">
+<h2>Answer: B</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+The answer is <strong>B — the student scored half a standard deviation below the mean.</strong>
+</p>
+<p>
+A z-score is measured in standard-deviation units. It is not a percentage (A), not a percentile rank (C), and not a raw point difference (D).
+</p>
+</div>
+
+</section>
+<section id="section-5" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 5
+</div>
+<div class="divider-title">
+Non-Significant Results
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="a-second-test" class="slide level2" data-runner="Part 5 · Non-Significant Results">
+<h2>A Second Test</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-code">
+<code>ttest x1mscalk1, by(female)</code>
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/second_test.png" alt="Stata output for ttest x1mscalk1 by female. Male: 7,930 children, mean 30.44. Female: 7,626 children, mean 30.29. Difference 0.15, t equals 0.83, degrees of freedom 15,554, two-sided p-value 0.4070."></p>
+</div>
+<div class="fig-cap">
+<p>Math scores by gender: means 30.44 vs.&nbsp;30.29, difference 0.15, t = 0.83, p = 0.407.</p>
+</div>
+</div>
+
+</section>
+<section id="not-every-test-says-yes" class="slide level2" data-runner="Part 5 · Non-Significant Results">
+<h2>Not Every Test Says Yes</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+p = 0.407 &gt; 0.05 — we <strong>fail to reject</strong> the null hypothesis.
+</div>
+<div class="box-grid cols-1" style="gap:14px;">
+<div class="box blue">
+<div class="box-body">
+The means are virtually identical (30.44 vs.&nbsp;30.29). With 15,000+ students, a meaningful difference would likely have shown up.
+</div>
+</div>
+<div class="box blue">
+<div class="box-body">
+The 95% CI for the difference runs from −0.20 to 0.49 — it contains zero, another sign we fail to reject.
+</div>
+</div>
+<div class="box orange">
+<div class="box-body">
+Not finding a difference is also a finding. With this much precision, a Type II error is unlikely.
+</div>
+</div>
+</div>
+
+</section>
+<section id="writing-up-a-non-significant-result" class="slide level2" data-runner="Part 5 · Non-Significant Results">
+<h2>Writing Up a Non-Significant Result</h2>
+<div class="title-rule">
+
+</div>
+<div class="box grey" style="padding:22px 26px;">
+<div class="box-title">
+Model sentence — non-significant result
+</div>
+<div class="box-body" style="font-style:italic;">
+“A two-sample t-test found no statistically significant difference in mean math scores between male and female kindergarteners (t = 0.83, p = 0.407).”
+</div>
+</div>
+<div class="box-grid cols-2" style="margin-top:0.8em;">
+<div class="box">
+<div class="box-title">
+Say it carefully
+</div>
+<div class="box-body">
+“No statistically significant difference” — not “no difference.” We didn’t prove zero; we failed to find evidence of one.
+</div>
+</div>
+<div class="box">
+<div class="box-title">
+No causal claims
+</div>
+<div class="box-body">
+We never “accept the null,” and we don’t say gender has “no effect.” A t-test can’t speak to effects.
+</div>
+</div>
+</div>
+
+</section>
+<section id="what-t-tests-dont-tell-you" class="slide level2" data-runner="Part 5 · Non-Significant Results">
+<h2>What t-Tests Don’t Tell You</h2>
+<div class="title-rule">
+
+</div>
+<div class="box-grid cols-1" style="gap:14px;">
+<div class="box blue">
+<div class="box-title">
+Only two groups
+</div>
+<div class="box-body">
+For three or more, you need a different tool — coming up next.
+</div>
+</div>
+<div class="box blue">
+<div class="box-title">
+No “why”
+</div>
+<div class="box-body">
+A significant result doesn’t tell you what causes the difference — that needs a different design.
+</div>
+</div>
+<div class="box orange">
+<div class="box-title">
+Significance ≠ importance
+</div>
+<div class="box-body">
+A 1.35-point gap on a 90-point scale — how much does that matter in practice? A judgment call, not a statistical one.
+</div>
+</div>
+</div>
+
+</section>
+<section id="section-6" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 6
+</div>
+<div class="divider-title">
+More Than Two Groups: ANOVA
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="what-if-you-have-3-groups" class="slide level2" data-runner="Part 6 · More Than Two Groups">
+<h2>What If You Have 3+ Groups?</h2>
+<div class="title-rule">
+
+</div>
+<div class="box-grid cols-2">
+<div class="box blue">
+<div class="box-title">
+t-Test
+</div>
+<div class="box-body">
+Exactly 2 groups.<br><br><em>e.g., Full-day vs.&nbsp;half-day.</em>
+</div>
+</div>
+<div class="box orange">
+<div class="box-title">
+ANOVA
+</div>
+<div class="box-body">
+3 or more groups, same logic.<br><br><em>e.g., White, Black, Hispanic, Other.</em>
+</div>
+</div>
+</div>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>ANOVA — Analysis of Variance — asks the same question for 3+ groups: are the means different enough to be more than noise? We keep it brief; regression (coming soon) does this and much more.</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="a-quick-look-at-anova" class="slide level2" data-runner="Part 6 · More Than Two Groups">
+<h2>A Quick Look at ANOVA</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-code">
+<code>oneway x1rscalk1 race4, tabulate</code>
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/anova_output.png" alt="Stata one-way ANOVA output for reading score by a four-category race variable. Group means: White 38.73, Black 35.89, Hispanic 34.24, Other 40.53. F of 3 and 14,595 degrees of freedom equals 263.12, p-value less than 0.001."></p>
+</div>
+<div class="fig-cap">
+<p>The key number is the <strong>F-statistic</strong>: F = 263.12, p &lt; 0.001 — at least one group’s mean differs.</p>
+</div>
+</div>
+
+</section>
+<section id="t-test-vs.-anova" class="slide level2 cfu" data-runner="Part 6 · More Than Two Groups">
+<h2>t-Test vs.&nbsp;ANOVA</h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 4
+</div>
+<h2 class="cfu-prompt">
+You want to compare average test scores across 4 school districts. Which test should you use?
+</h2>
+<ol class="cfu-options" type="A">
+<li>
+Chi-square test
+</li>
+<li>
+t-test
+</li>
+<li>
+ANOVA
+</li>
+<li>
+Z-score
+</li>
+</ol>
+</div>
+
+</section>
+<section id="answer-c-anova" class="slide level2 vcenter" data-runner="Part 6 · More Than Two Groups">
+<h2>Answer: C, ANOVA</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+The answer is <strong>C — ANOVA</strong>, because you’re comparing the means of a continuous outcome across more than two groups.
+</p>
+<p>
+A t-test only works for two groups. Chi-square is for categorical outcomes, not continuous scores. And a z-score is a transformation, not a test.
+</p>
+</div>
+
+</section>
+<section id="section-7" class="slide level2 divider" data-runner="">
+<h2></h2>
+<div class="divider-content">
+<div class="divider-eyebrow">
+Part 7
+</div>
+<div class="divider-title">
+Choosing the Right Test
+</div>
+<div class="divider-rule">
+
+</div>
+</div>
+</section>
+<section id="choosing-the-right-test" class="slide level2" data-runner="Part 7 · Choosing the Right Test">
+<h2>Choosing the Right Test</h2>
+<div class="title-rule">
+
+</div>
+<div class="fig-stack">
+<div class="fig-img">
+<p><img src="images/choosing_test_table.png" alt="A summary table of three tests. Chi-square: categorical outcome, 2 or more groups, example home language by school type. t-test: continuous outcome, 2 groups, example reading score by full-day kindergarten. ANOVA: continuous outcome, 3 or more groups, example reading score by race or ethnicity."></p>
+</div>
+<div class="fig-cap">
+<p>Later this semester, regression moves beyond simple group comparisons to relationships among continuous variables.</p>
+</div>
+</div>
+
+</section>
+<section id="putting-it-together" class="slide level2 cfu" data-runner="Part 7 · Choosing the Right Test">
+<h2>Putting It Together</h2>
+<div class="cfu-frame">
+<div class="cfu-eyebrow">
+PlayPosit Question 5
+</div>
+<h2 class="cfu-prompt">
+A principal runs <code>ttest reading_score, by(school)</code>: School A mean = 42.1, School B mean = 38.7, t = 3.45, p = 0.001. State your decision in 1–2 sentences. Then add one sentence: what practical question should the principal investigate before acting?
+</h2>
+<div class="cfu-foot">
+Respond in 2–3 sentences.
+</div>
+</div>
+
+</section>
+<section id="what-were-looking-for" class="slide level2 vcenter" data-runner="Part 7 · Choosing the Right Test">
+<h2>What We’re Looking For</h2>
+<div class="title-rule">
+
+</div>
+<div class="answer-block">
+<p>
+A strong answer names the test, states the decision with the numbers, gives the direction, and flags a practical consideration. For example:
+</p>
+<p>
+<em>“A two-sample t-test revealed a statistically significant difference in mean reading scores between School A and School B (t = 3.45, p = 0.001); School A scored higher, 42.1 vs.&nbsp;38.7. Before acting, the principal should ask whether the two schools serve similar student populations — differences in demographics or resources could explain the gap.”</em>
+</p>
+</div>
+
+</section>
+<section id="your-stata-assignment" class="slide level2" data-runner="Part 7 · Choosing the Right Test">
+<h2>Your Stata Assignment</h2>
+<div class="title-rule">
+
+</div>
+<div class="box blue" style="padding:26px 28px;">
+<div class="box-title">
+Dataset: ECLS-K:2011 — ~18,000 kindergarteners
+</div>
+<div class="box-body" style="font-size:0.82em;">
+<strong>What you’ll do:</strong>
+<ul style="margin:0.4em 0 0; line-height:1.7;">
+<li>
+Run two-sample t-tests and apply the five-step procedure
+</li>
+<li>
+Standardize variables into z-scores and compare a gap across subjects
+</li>
+<li>
+Run a one-way ANOVA across more than two groups
+</li>
+<li>
+Write up each decision, significant and non-significant
+</li>
+</ul>
+</div>
+</div>
+<div class="slide-lead" style="margin-top:0.8em;">
+The assignment file lists the exact tasks; the demo file shows every command pattern. Your job: write the code, and interpret what the results mean.
+</div>
+
+</section>
+<section id="looking-ahead" class="slide level2 vcenter" data-runner="Part 7 · Choosing the Right Test">
+<h2>Looking Ahead</h2>
+<div class="title-rule">
+
+</div>
+<div class="slide-lead">
+So far this unit: categorical × categorical (chi-square), and continuous × categorical (t-tests and ANOVA).
+</div>
+<div class="slide-lead">
+<strong>Next module:</strong> the relationship between two <em>continuous</em> variables — for example, how do test scores relate to family income? That’s correlation and regression, the foundation of most quantitative research in education.
+</div>
+<div class="slide-lead" style="margin-bottom:0.15em;">
+<strong>For this week:</strong>
+</div>
+<ul class="ahead-list">
+<li>
+Watch the lecture and finish the <strong>PlayPosit questions</strong>
+</li>
+<li>
+Complete the <strong>Stata assignment</strong> (t-tests, z-scores, ANOVA, interpret)
+</li>
+</ul>
+
+<script>
+// Global footer overlay: reads data-runner from each slide section
+document.addEventListener('DOMContentLoaded', function() {
+  var footer = document.createElement('div');
+  footer.id = 'global-runner';
+  document.querySelector('.reveal').appendChild(footer);
+
+  function updateRunner() {
+    var slide = Reveal.getCurrentSlide();
+    var runner = slide ? slide.getAttribute('data-runner') : '';
+    if (runner) {
+      footer.textContent = runner + '  |  Huffaker · EDA6931 · Module 7';
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
+  }
+
+  Reveal.on('slidechanged', updateRunner);
+  Reveal.on('ready', updateRunner);
+});
+</script>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="module_7_lecture_slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 4.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
